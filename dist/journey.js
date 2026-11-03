@@ -67,17 +67,12 @@
   }
   walkFrame=requestAnimationFrame(step);
  }
- const dots=document.querySelector('#journey-stops');
- stops.forEach((stop,i)=>{const b=document.createElement('button');b.type='button';b.textContent=String(i+1).padStart(2,'0');b.setAttribute('aria-label',`Go to ${stop.name}`);b.addEventListener('click',()=>show(i));dots.append(b);});
  function show(i,focus=true){
   if(i===index)return;
   index=i;const stop=stops[i];
   panel.classList.remove('arrived');panel.hidden=true;hero.classList.add('journey-active');actor.setAttribute('aria-expanded','true');actor.setAttribute('aria-label',`Continue journey: ${stop.name}`);
-  document.querySelector('#stop-count').textContent=`CHAPTER ${i+1} / ${stops.length}`;
   for(const [selector,key]of [['#stop-place','place'],['#stop-title','title'],['#stop-date','date'],['#stop-copy','copy'],['#stop-detail','detail']])document.querySelector(selector).textContent=stop[key];
-  const tags=document.querySelector('#stop-tags');tags.replaceChildren(...stop.tags.map(t=>{const el=document.createElement('span');el.textContent=t;return el;}));
-  prev.disabled=false;prev.textContent=i===0?'← Starting point':'← Previous';next.textContent=i===stops.length-1?'Back to the beginning ↺':'Next stop →';
-  [...dots.children].forEach((b,n)=>{if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+  prev.disabled=false;prev.textContent='←';prev.setAttribute('aria-label',i===0?'Return to starting position':'Previous stop');next.textContent=i===stops.length-1?'↺':'→';next.setAttribute('aria-label',i===stops.length-1?'Return to starting position':'Next stop');
   stationButtons.forEach((b,n)=>{if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
   move(positions[i],()=>{
    panel.hidden=false;anchorPanel();
