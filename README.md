@@ -33,3 +33,7 @@ Publish `dist/` through any static host. `.openai/hosting.json` stores the exist
 The traveler animates along the road and opens a panel anchored to the destination after arriving. Click or hover an icon (450ms dwell), use trackpad scrolling, or press Up/Down arrows to advance/reverse. Escape closes the panel. Reduced motion makes travel instant. Visible station labels and instructions are omitted; accessible names remain. Adobe uses only its symbol, extracted from the downloaded logo.
 
 Up arrows and upward trackpad gestures advance along the road; down reverses. The homepage introduction remains visible during the journey.
+
+## Workspace
+
+The sole working checkout is `/Users/himanshuverma/Documents/website`. GitHub: `ghostdevhv/website`, branch `main`. There is no separate deployment checkout in Documents/Resume. Publish from this checkout using `.openai/hosting.json`; preserve the GitHub origin remote. Historical deployment archives, previews, photo-review files, and a Git bundle of the previous deployment history are retained locally in ignored `.local-artifacts/`. These artifacts are not uploaded to GitHub. Original personal photos remain in Downloads.
