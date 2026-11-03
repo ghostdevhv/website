@@ -1,35 +1,29 @@
-# Himanshu’s personal site
+# Himanshu’s personal website
 
-A dependency-free static site. Source and deployable files live in `dist/`.
+A dependency-free static portfolio with a time-aware illustrated road journey.
 
-## Preview
+## Local preview
 
-Run `python3 -m http.server 4173 --directory dist` from this folder, then open http://localhost:4173.
+Run `python3 -m http.server 4173 --directory dist` and visit http://localhost:4173.
 
-- `dist/index.html`: copy, project details, links, metadata.
-- `dist/style.css`: responsive design, accent palette, typography.
-- `dist/motion.js`: canvas contour animation, pointer interaction, pause control.
+## Source
 
-The background respects reduced-motion settings and pauses when the tab is hidden. Fonts are loaded from Google Fonts with system fallbacks. No analytics or tracking.
+- `dist/index.html`: illustrated homepage and chapter panel.
+- `dist/journey.js`: six stops, consolidated Adobe internship/job chapter, and navigation.
+- `dist/style.css`: responsive layout and scene palettes.
+- `dist/sunset.js`: device-local time selection; hidden `?view=morning|afternoon|evening|night` overrides.
+- `dist/greeting.js`: paired greeting/journey-line translations using a curated timezone-to-language map. This approximates region; it does not infer nationality. English fallback.
+- `dist/work/`, `dist/about/`, `dist/contact/`: standalone destination pages.
+- `dist/assets/`: company logos and the illustrated KGP building; sources in `SOURCES.md`.
 
-Content and additional colours are intentionally left for the next design pass. The custom domain is not configured yet.
+## Journey
 
-## Background interaction
+Click the traveler, a road stop, or use two-finger vertical scrolling. Trackpad deltas accumulate to 24px, and momentum is limited to one chapter per gesture. Touch swipes and previous/next buttons are also supported. Escape closes the story. The landscape stays still; only small road dots move. Reduced-motion preferences disable those dots and greeting transitions.
 
-Two flowing ribbons in blue, violet, teal, and coral use spring-based displacement around the cursor. Strands ease back when the cursor leaves. The canvas runs at up to 30 fps, caps pixel density at 2x, pauses in hidden tabs, and respects reduced motion. Text and links remain above the decorative canvas.
+The greeting and journey line alternate every nine seconds between English and a region-associated language. Local-time bands: morning 05–11, afternoon 11–17, evening 17–20, night 20–05. No geolocation or tracking is used. Google Fonts are loaded externally with system fallbacks.
 
-## Content
+Onehouse is a past role; no departure date is assumed. Career text is based on the user-supplied LaTeX resume.
 
-One vertical page with five detailed work stories, toolkit, education, personal interests, and contact. Onehouse is a past role; no end date is assumed. Career details come from the supplied resume. Work links stay on-page; external navigation is limited to GitHub, LinkedIn, and email contact. The greeting alternates between Hindi and English every nine seconds while visible, unless motion is paused or reduced.
+## Hosting
 
-## Local scene and greeting
-
-The scene follows device-local hours: morning 05–11, afternoon 11–17, evening 17–20, night 20–05. These are time-of-day bands, not astronomical sunrise/sunset. A hidden `?view=morning|afternoon|evening|night` query parameter offers manual previews; there is no visible scene selector. Invalid values revert to local time. The primary browser language chooses the initial greeting (33 supported language codes, English fallback), alternating with Hindi every nine seconds when motion is enabled. No geolocation, IP lookup, or personal data transmission.
-
-## Regional language
-
-Greeting and journey line now use a curated timezone-to-language mapping rather than browser language. Both switch together between the regional default and English every nine seconds. Hindi is the chosen default for Indian timezones, not a claim that India has a national language. Unknown, ambiguous, and English-speaking timezone mappings fall back to English; no geolocation or external lookup is used. Timezone is approximate and cannot establish nationality.
-
-## Interactive journey
-
-Home is an illustrated seven-stop journey controlled by the traveler button, previous/next controls, or numbered stops. Escape closes the journey. `dist/journey.js` contains chapter copy. The character follows the SVG road, with reduced-motion and pause support. `/work/`, `/about/`, and `/contact/` are standalone quick-link destinations. Internship chapters use earlier entries in the supplied LaTeX source; Onehouse has no assumed departure date.
+Publish `dist/` through any static host. `.openai/hosting.json` stores the existing Sites project identity. The GitHub remote stores source only; pushing there does not automatically deploy. No custom domain is configured yet.

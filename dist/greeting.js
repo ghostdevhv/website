@@ -1,7 +1,6 @@
 (() => {
   const word = document.querySelector('.greeting-word');
   const journey = document.querySelector('.journey-line');
-  const motion = document.querySelector('#motion-toggle');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   // Timezone is a regional hint, never a claim about nationality or precise location.
   const regions = {
@@ -44,7 +43,7 @@
   function visible() { const r = word.getBoundingClientRect();return r.bottom > 0 && r.top < innerHeight; }
   function sync() {
     clear();
-    if (local === 'en' || document.hidden || reduced.matches || motion.getAttribute('aria-pressed') !== 'true') return;
+    if (local === 'en' || document.hidden || reduced.matches) return;
     interval = setInterval(() => {
       if (!visible()) return;
       word.classList.add('changing');journey.classList.add('changing');
@@ -52,6 +51,5 @@
     },9000);
   }
   render(local);
-  new MutationObserver(sync).observe(motion,{attributes:true,attributeFilter:['aria-pressed']});
   document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',sync);sync();
 })();
