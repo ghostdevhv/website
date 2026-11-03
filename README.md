@@ -41,3 +41,5 @@ The sole working checkout is `/Users/himanshuverma/Documents/website`. GitHub: `
 ## Photo collection
 
 Seven original JPEGs live in `dist/assets/photos/full/`. They were moved byte for byte from the repository root; source filenames and SHA-256 checksums are in `dist/assets/photos/manifest.json`. Separate 720px previews live in `thumbs/`. The compact About gallery opens an approximately 80%-viewport native dialog, loading the full-resolution original only on selection. Left/right buttons or arrow keys browse all photos; Escape, outside click, and the close button dismiss it. Native dialog focus returns to the selected tile. Previous compressed gallery images are archived under ignored `.local-artifacts/replaced-gallery/`, not deployed.
+
+Photo location labels were supplied by the owner. The lake-reflection image was removed from the public gallery and archived locally. Six photos remain; original JPEG bytes are unchanged. Onehouse departure is recorded as October 2023 per owner correction.

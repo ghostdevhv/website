@@ -4,49 +4,48 @@ const galleryPhotos = [
     "full": "/assets/photos/full/hilltop.jpg",
     "thumb": "/assets/photos/thumbs/hilltop.jpg",
     "width": 4032,
-    "height": 3024
+    "height": 3024,
+    "location": "Wayanad, Kerala"
   },
   {
     "alt": "Birds flying above the golden sea at sunset",
     "full": "/assets/photos/full/golden-sea.jpg",
     "thumb": "/assets/photos/thumbs/golden-sea.jpg",
     "width": 3000,
-    "height": 4000
-  },
-  {
-    "alt": "Golden clouds reflected in a lake",
-    "full": "/assets/photos/full/lake-reflection.jpg",
-    "thumb": "/assets/photos/thumbs/lake-reflection.jpg",
-    "width": 960,
-    "height": 1280
+    "height": 4000,
+    "location": "Lagos, Portugal"
   },
   {
     "alt": "Sunlight breaking through clouds above the shore",
     "full": "/assets/photos/full/sunlit-shore.jpg",
     "thumb": "/assets/photos/thumbs/sunlit-shore.jpg",
     "width": 3024,
-    "height": 4032
+    "height": 4032,
+    "location": "Goa, India"
   },
   {
     "alt": "A peach evening sky over a beach",
     "full": "/assets/photos/full/evening-beach.jpg",
     "thumb": "/assets/photos/thumbs/evening-beach.jpg",
     "width": 4032,
-    "height": 3024
+    "height": 3024,
+    "location": "Mumbai, India"
   },
   {
     "alt": "Deep red evening clouds above the city skyline",
     "full": "/assets/photos/full/city-dusk.jpg",
     "thumb": "/assets/photos/thumbs/city-dusk.jpg",
     "width": 1600,
-    "height": 1066
+    "height": 1066,
+    "location": "Toronto, Canada"
   },
   {
     "alt": "Dark tree branches against the evening sky",
     "full": "/assets/photos/full/branches.jpg",
     "thumb": "/assets/photos/thumbs/branches.jpg",
     "width": 3024,
-    "height": 4032
+    "height": 4032,
+    "location": "Chiang Mai, Thailand"
   }
 ];
 (() => {
@@ -62,8 +61,8 @@ const galleryPhotos = [
     const photo = galleryPhotos[index], request = ++version;
     picture.hidden = true; status.hidden = false; status.textContent = 'Loading photo…';
     count.textContent = `${index + 1} / ${galleryPhotos.length}`;
-    caption.textContent = photo.alt;
-    picture.alt = photo.alt;
+    caption.textContent = `${photo.location} · ${photo.alt}`;
+    picture.alt = `${photo.alt}, ${photo.location}`;
     picture.onload = () => { if (request !== version) return; picture.hidden = false; status.hidden = true; };
     picture.onerror = () => { if (request !== version) return; status.textContent = 'This photo could not load. Try another photo or reopen it.'; };
     picture.src = photo.full;

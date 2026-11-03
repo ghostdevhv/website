@@ -7,7 +7,8 @@
     "width": 4032,
     "height": 3024,
     "source": "ECAC2928-46CD-48D1-9F38-2AC669A44204.JPG",
-    "sha256": "f8606d888359752bd41d7119a2113a1a005dfe23a51561ea435f4a187c42d001"
+    "sha256": "f8606d888359752bd41d7119a2113a1a005dfe23a51561ea435f4a187c42d001",
+    "location": "Wayanad, Kerala"
   },
   {
     "id": "golden-sea",
@@ -17,17 +18,8 @@
     "width": 3000,
     "height": 4000,
     "source": "9A781DAB-10B9-4C7F-8634-D8188628178D.JPG",
-    "sha256": "9efd0e53d4a3d95f4a24af0072941ec540a8bb44bebe1fa8d8da563cbb603ac0"
-  },
-  {
-    "id": "lake-reflection",
-    "alt": "Golden clouds reflected in a lake",
-    "full": "/assets/photos/full/lake-reflection.jpg",
-    "thumb": "/assets/photos/thumbs/lake-reflection.jpg",
-    "width": 960,
-    "height": 1280,
-    "source": "2A3DFAB1-647E-464E-9DD3-0F092EC432BE.JPG",
-    "sha256": "e510b567038dcf92e279e3cafc364abd98ec6f456d42ef1cd72155282e7bdedc"
+    "sha256": "9efd0e53d4a3d95f4a24af0072941ec540a8bb44bebe1fa8d8da563cbb603ac0",
+    "location": "Lagos, Portugal"
   },
   {
     "id": "sunlit-shore",
@@ -37,7 +29,8 @@
     "width": 3024,
     "height": 4032,
     "source": "26DB8AD1-4C89-4B37-971C-720085C9CD5C.JPG",
-    "sha256": "337166b9f2a3fd88593908285cbdbc52b87747af83ead6cd02dc4cfc03ef6e2b"
+    "sha256": "337166b9f2a3fd88593908285cbdbc52b87747af83ead6cd02dc4cfc03ef6e2b",
+    "location": "Goa, India"
   },
   {
     "id": "evening-beach",
@@ -47,7 +40,8 @@
     "width": 4032,
     "height": 3024,
     "source": "06635DFC-87BA-45B5-BA3D-6496B8567A42.JPG",
-    "sha256": "f7d76d37869c29264ab7d12c7b65198a5c122ac17d37d55cfd2a66055bc1b19e"
+    "sha256": "f7d76d37869c29264ab7d12c7b65198a5c122ac17d37d55cfd2a66055bc1b19e",
+    "location": "Mumbai, India"
   },
   {
     "id": "city-dusk",
@@ -57,7 +51,8 @@
     "width": 1600,
     "height": 1066,
     "source": "5b83f12f-3a7a-4221-8fc9-389e941ac191.jpg",
-    "sha256": "9de9f62e47712fbc2f140d724cefc8c46365dec49d51914cfdfc2479886d2353"
+    "sha256": "9de9f62e47712fbc2f140d724cefc8c46365dec49d51914cfdfc2479886d2353",
+    "location": "Toronto, Canada"
   },
   {
     "id": "branches",
@@ -67,6 +62,7 @@
     "width": 3024,
     "height": 4032,
     "source": "8B42420E-EF5E-498F-85A8-F49E4FF3AD28.JPG",
-    "sha256": "a146467a98b9a5889b2eb4143c0d0abd15f33047e8e2a78fe1d175404f7aded6"
+    "sha256": "a146467a98b9a5889b2eb4143c0d0abd15f33047e8e2a78fe1d175404f7aded6",
+    "location": "Chiang Mai, Thailand"
   }
 ]
