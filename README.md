@@ -29,3 +29,7 @@ The scene follows device-local hours: morning 05–11, afternoon 11–17, evenin
 ## Regional language
 
 Greeting and journey line now use a curated timezone-to-language mapping rather than browser language. Both switch together between the regional default and English every nine seconds. Hindi is the chosen default for Indian timezones, not a claim that India has a national language. Unknown, ambiguous, and English-speaking timezone mappings fall back to English; no geolocation or external lookup is used. Timezone is approximate and cannot establish nationality.
+
+## Interactive journey
+
+Home is an illustrated seven-stop journey controlled by the traveler button, previous/next controls, or numbered stops. Escape closes the journey. `dist/journey.js` contains chapter copy. The character follows the SVG road, with reduced-motion and pause support. `/work/`, `/about/`, and `/contact/` are standalone quick-link destinations. Internship chapters use earlier entries in the supplied LaTeX source; Onehouse has no assumed departure date.
