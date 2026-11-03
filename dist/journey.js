@@ -84,7 +84,7 @@
    requestAnimationFrame(()=>{panel.classList.add('arrived');if(focus)title.focus({preventScroll:true});});
   });
  }
- function exit(){clearTimeout(hoverTimer);panel.classList.remove('arrived');panel.hidden=true;hero.classList.remove('journey-active');actor.setAttribute('aria-expanded','false');actor.setAttribute('aria-label','Explore my journey');index=-1;stationButtons.forEach(b=>b.removeAttribute("aria-current"));move(.95);actor.focus({preventScroll:true});}
+ function exit(){clearTimeout(hoverTimer);panel.classList.remove('arrived');panel.hidden=true;hero.classList.remove('journey-active');actor.setAttribute('aria-expanded','false');actor.setAttribute('aria-label','Explore my journey');index=-1;stationButtons.forEach(b=>b.removeAttribute("aria-current"));move(.95);actor.blur();}
  actor.addEventListener('click',()=>show(index<0?0:Math.min(index+1,stops.length-1)));
  document.addEventListener('click',event=>{
   if(index<0||event.target.closest('#journey-panel'))return;
