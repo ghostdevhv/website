@@ -23,3 +23,23 @@
   document.addEventListener('visibilitychange',sync);
   sync();
 })();
+
+(() => {
+  const picker = document.querySelector('#scene-select');
+  const caption = document.querySelector('#scene-caption');
+  function localScene(hour) {
+    if (hour >= 5 && hour < 11) return 'morning';
+    if (hour >= 11 && hour < 17) return 'afternoon';
+    if (hour >= 17 && hour < 20) return 'evening';
+    return 'night';
+  }
+  function update() {
+    const scene = picker.value === 'auto' ? localScene(new Date().getHours()) : picker.value;
+    document.body.dataset.scene = scene;
+    caption.textContent = `${scene[0].toUpperCase()}${scene.slice(1)}${picker.value === 'auto' ? ' · your time' : ''}`;
+  }
+  picker.addEventListener('change',update);
+  document.addEventListener('visibilitychange',() => {if (!document.hidden) update();});
+  setInterval(update,60000);
+  update();
+})();

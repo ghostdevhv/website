@@ -21,3 +21,7 @@ Two flowing ribbons in blue, violet, teal, and coral use spring-based displaceme
 ## Content
 
 One vertical page with five detailed work stories, toolkit, education, personal interests, and contact. Onehouse is a past role; no end date is assumed. Career details come from the supplied resume. Work links stay on-page; external navigation is limited to GitHub, LinkedIn, and email contact. The greeting alternates between Hindi and English every nine seconds while visible, unless motion is paused or reduced.
+
+## Local scene and greeting
+
+The scene follows device-local hours: morning 05–11, afternoon 11–17, evening 17–20, night 20–05. These are time-of-day bands, not astronomical sunrise/sunset. A selector offers manual previews. The primary browser language chooses the initial greeting (33 supported language codes, English fallback), alternating with Hindi every nine seconds when motion is enabled. No geolocation, IP lookup, or personal data transmission.
