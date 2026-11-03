@@ -18,6 +18,6 @@ Content and additional colours are intentionally left for the next design pass. 
 
 Two flowing ribbons in blue, violet, teal, and coral use spring-based displacement around the cursor. Strands ease back when the cursor leaves. The canvas runs at up to 30 fps, caps pixel density at 2x, pauses in hidden tabs, and respects reduced motion. Text and links remain above the decorative canvas.
 
-## Next content pass
+## Content
 
-All work should be described in detail within this page; only social and GitHub links should navigate externally. The existing Quanton link is pending removal during that content pass.
+One vertical page with five detailed work stories, toolkit, education, personal interests, and contact. Onehouse is a past role; no end date is assumed. Career details come from the supplied resume. Work links stay on-page; external navigation is limited to GitHub, LinkedIn, and email contact. The greeting alternates between Hindi and English every nine seconds while visible, unless motion is paused or reduced.
