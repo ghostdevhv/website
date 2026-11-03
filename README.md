@@ -25,3 +25,7 @@ One vertical page with five detailed work stories, toolkit, education, personal 
 ## Local scene and greeting
 
 The scene follows device-local hours: morning 05–11, afternoon 11–17, evening 17–20, night 20–05. These are time-of-day bands, not astronomical sunrise/sunset. A hidden `?view=morning|afternoon|evening|night` query parameter offers manual previews; there is no visible scene selector. Invalid values revert to local time. The primary browser language chooses the initial greeting (33 supported language codes, English fallback), alternating with Hindi every nine seconds when motion is enabled. No geolocation, IP lookup, or personal data transmission.
+
+## Regional language
+
+Greeting and journey line now use a curated timezone-to-language mapping rather than browser language. Both switch together between the regional default and English every nine seconds. Hindi is the chosen default for Indian timezones, not a claim that India has a national language. Unknown, ambiguous, and English-speaking timezone mappings fall back to English; no geolocation or external lookup is used. Timezone is approximate and cannot establish nationality.

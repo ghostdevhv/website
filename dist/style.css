@@ -17,3 +17,5 @@ body[data-scene=night]{--sky-top:#101432;--sky-middle:#192b62;--sky-low:#3d4981;
 
 /* Familiar roadside details; warm light only after dark. */
 .night-lamp{opacity:0;pointer-events:none}body[data-scene=night] .night-lamp{opacity:1}body[data-scene=night] .lamp-bulb{stroke:#ffe2a0;filter:drop-shadow(0 0 7px #ffbd66)}body[data-scene=night] .chai-window{fill:#ffce7a;filter:drop-shadow(0 0 5px #f5ad5c)}.roadside-chai,.milestone{opacity:.95}
+
+.journey-line{display:inline-block;unicode-bidi:isolate;transition:opacity .25s ease,transform .25s ease;max-width:min(70vw,480px);line-height:1.6}.journey-line.changing{opacity:0;transform:translateY(4px)}body.paused .journey-line{transition:none}
