@@ -47,3 +47,7 @@ Photo location labels were supplied by the owner. The lake-reflection image was 
 ## About music section
 
 The personal introduction is unchanged. A compact photography grid sits beside a music section on desktop and stacks on mobile. The Spotify agent verified the existing public BKK → BLR playlist and the five displayed song/artist pairs through the logged-in desktop app. This is a playlist preview, not an all-time or genre ranking. The Spotify iframe is loaded only when Open player is clicked; it is removed when returning to the track list. No playback starts automatically.
+
+## Shared page palette
+
+Home and About both load `sunset.js` and use the same local-time scene variables. About uses a quieter background derived from those sky/hill colours: pale peach morning, pale teal afternoon, violet/coral evening, and indigo night. Text and cards adapt for legibility. The hidden `?view=morning|afternoon|evening|night` override works on both pages. About retains a neutral dark photo viewer and click-to-load Spotify player.
