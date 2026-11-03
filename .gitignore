@@ -3,3 +3,6 @@
 .env.*
 node_modules/
 *.tar.gz
+
+*.swp
+*.swo
