@@ -24,7 +24,7 @@
    button.setAttribute('aria-label',`Visit ${stop.name}`);
    const mark=document.createElement('span');mark.className='station-mark';if(assets[brands[i]]){const img=document.createElement('img');img.src=assets[brands[i]];img.alt=marks[i];img.addEventListener('error',()=>{mark.textContent=marks[i];},{once:true});mark.append(img);}else mark.textContent=marks[i];
    button.append(mark);button.addEventListener('click',()=>show(i));
-   button.addEventListener('pointerenter',event=>{if(event.pointerType==='touch')return;clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>show(i,false),450);});
+   button.addEventListener('pointerenter',event=>{if(event.pointerType==='touch'||index>=0)return;clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>show(i,false),450);});
    button.addEventListener('pointerleave',()=>clearTimeout(hoverTimer));stations.append(button);return button;
  });
  function position(){
@@ -76,7 +76,7 @@
   document.querySelector('#stop-count').textContent=`CHAPTER ${i+1} / ${stops.length}`;
   for(const [selector,key]of [['#stop-place','place'],['#stop-title','title'],['#stop-date','date'],['#stop-copy','copy'],['#stop-detail','detail']])document.querySelector(selector).textContent=stop[key];
   const tags=document.querySelector('#stop-tags');tags.replaceChildren(...stop.tags.map(t=>{const el=document.createElement('span');el.textContent=t;return el;}));
-  prev.disabled=i===0;next.textContent=i===stops.length-1?'Back to the beginning ↺':'Next stop →';
+  prev.disabled=false;prev.textContent=i===0?'← Starting point':'← Previous';next.textContent=i===stops.length-1?'Back to the beginning ↺':'Next stop →';
   [...dots.children].forEach((b,n)=>{if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
   stationButtons.forEach((b,n)=>{if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
   move(positions[i],()=>{
@@ -84,15 +84,20 @@
    requestAnimationFrame(()=>{panel.classList.add('arrived');if(focus)title.focus({preventScroll:true});});
   });
  }
- function exit(){clearTimeout(hoverTimer);panel.classList.remove('arrived');panel.hidden=true;hero.classList.remove('journey-active');actor.setAttribute('aria-expanded','false');actor.setAttribute('aria-label','Explore my journey');index=-1;stationButtons.forEach(b=>b.removeAttribute("aria-current"));move(.94);actor.focus({preventScroll:true});}
+ function exit(){clearTimeout(hoverTimer);panel.classList.remove('arrived');panel.hidden=true;hero.classList.remove('journey-active');actor.setAttribute('aria-expanded','false');actor.setAttribute('aria-label','Explore my journey');index=-1;stationButtons.forEach(b=>b.removeAttribute("aria-current"));move(.95);actor.focus({preventScroll:true});}
  actor.addEventListener('click',()=>show(index<0?0:Math.min(index+1,stops.length-1)));
- prev.addEventListener('click',()=>{if(index>0)show(index-1);});next.addEventListener('click',()=>{if(index===stops.length-1)exit();else show(index+1);});close.addEventListener('click',exit);
+ document.addEventListener('click',event=>{
+  if(index<0||event.target.closest('#journey-panel'))return;
+  exit();event.preventDefault();event.stopPropagation();
+ },true);
+ prev.addEventListener('click',()=>{if(index===0)exit();else if(index>0)show(index-1);});next.addEventListener('click',()=>{if(index===stops.length-1)exit();else show(index+1);});close.addEventListener('click',exit);
  document.addEventListener('keydown',e=>{
   if(e.target.closest('input,textarea,select,[contenteditable=true]'))return;
   if(e.key==='Escape'&&index>=0){exit();return;}
   if(!['ArrowUp','ArrowDown'].includes(e.key)||e.repeat)return;
   e.preventDefault();
   if(index<0){if(e.key==='ArrowUp')show(0,false);return;}
+  if(index===0&&e.key==='ArrowDown'){exit();return;}
   show(Math.max(0,Math.min(stops.length-1,index+(e.key==='ArrowUp'?1:-1))),false);
  });
  // One chapter per trackpad gesture. Small deltas accumulate; momentum cannot skip stops.
@@ -111,10 +116,11 @@
    gestureUsed=true;
    const direction=wheelTotal<0?1:-1;
    if(index<0){if(direction>0)show(0,false);return;}
+   if(index===0&&direction<0){exit();return;}
    const target=Math.max(0,Math.min(stops.length-1,index+direction));
    show(target,false);
  },{passive:false});
  hero.addEventListener('touchstart',event=>{if(!event.target.closest('.journey-panel')&&event.touches.length===1)touchY=event.touches[0].clientY;},{passive:true});
- hero.addEventListener('touchend',event=>{if(touchY===null)return;const delta=touchY-event.changedTouches[0].clientY;touchY=null;if(Math.abs(delta)<40)return;show(index<0?0:Math.max(0,Math.min(stops.length-1,index+(delta<0?1:-1))),false);},{passive:true});
+ hero.addEventListener('touchend',event=>{if(touchY===null)return;const delta=touchY-event.changedTouches[0].clientY;touchY=null;if(Math.abs(delta)<40)return;if(index===0&&delta>0){exit();return;}if(index<0&&delta>0)return;show(index<0?0:Math.max(0,Math.min(stops.length-1,index+(delta<0?1:-1))),false);},{passive:true});
  window.addEventListener('resize',()=>{position();anchorPanel();});position();
 })();
