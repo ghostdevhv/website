@@ -84,7 +84,7 @@
    requestAnimationFrame(()=>{panel.classList.add('arrived');if(focus)title.focus({preventScroll:true});});
   });
  }
- function exit(){clearTimeout(hoverTimer);panel.classList.remove('arrived');panel.hidden=true;hero.classList.remove('journey-active');actor.setAttribute('aria-expanded','false');actor.setAttribute('aria-label','Explore my journey');index=-1;stationButtons.forEach(b=>b.removeAttribute("aria-current"));move(.95);actor.focus({preventScroll:true});}
+ function exit(){clearTimeout(hoverTimer);panel.classList.remove('arrived');panel.hidden=true;hero.classList.remove('journey-active');actor.setAttribute('aria-expanded','false');actor.setAttribute('aria-label','Explore my journey');index=-1;stationButtons.forEach(b=>b.removeAttribute("aria-current"));move(.95);actor.blur();}
  actor.addEventListener('click',()=>show(index<0?0:Math.min(index+1,stops.length-1)));
  document.addEventListener('click',event=>{
   if(index<0||event.target.closest('#journey-panel'))return;
@@ -95,7 +95,7 @@
   if(e.target.closest('input,textarea,select,[contenteditable=true]'))return;
   if(e.key==='Escape'&&index>=0){exit();return;}
   if(!['ArrowUp','ArrowDown'].includes(e.key)||e.repeat)return;
-  e.preventDefault();
+  actor.blur();e.preventDefault();
   if(index<0){if(e.key==='ArrowUp')show(0,false);return;}
   if(index===0&&e.key==='ArrowDown'){exit();return;}
   show(Math.max(0,Math.min(stops.length-1,index+(e.key==='ArrowUp'?1:-1))),false);
