@@ -24,7 +24,7 @@
    button.setAttribute('aria-label',`Visit ${stop.name}`);
    const mark=document.createElement('span');mark.className='station-mark';if(assets[brands[i]]){const img=document.createElement('img');img.src=assets[brands[i]];img.alt=marks[i];img.addEventListener('error',()=>{mark.textContent=marks[i];},{once:true});mark.append(img);}else mark.textContent=marks[i];
    button.append(mark);button.addEventListener('click',()=>show(i));
-   button.addEventListener('pointerenter',event=>{if(event.pointerType==='touch')return;clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>show(i,false),450);});
+   button.addEventListener('pointerenter',event=>{if(event.pointerType==='touch'||index>=0)return;clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>show(i,false),450);});
    button.addEventListener('pointerleave',()=>clearTimeout(hoverTimer));stations.append(button);return button;
  });
  function position(){
@@ -86,6 +86,10 @@
  }
  function exit(){clearTimeout(hoverTimer);panel.classList.remove('arrived');panel.hidden=true;hero.classList.remove('journey-active');actor.setAttribute('aria-expanded','false');actor.setAttribute('aria-label','Explore my journey');index=-1;stationButtons.forEach(b=>b.removeAttribute("aria-current"));move(.95);actor.focus({preventScroll:true});}
  actor.addEventListener('click',()=>show(index<0?0:Math.min(index+1,stops.length-1)));
+ document.addEventListener('click',event=>{
+  if(index<0||event.target.closest('#journey-panel'))return;
+  exit();event.preventDefault();event.stopPropagation();
+ },true);
  prev.addEventListener('click',()=>{if(index===0)exit();else if(index>0)show(index-1);});next.addEventListener('click',()=>{if(index===stops.length-1)exit();else show(index+1);});close.addEventListener('click',exit);
  document.addEventListener('keydown',e=>{
   if(e.target.closest('input,textarea,select,[contenteditable=true]'))return;
