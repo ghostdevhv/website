@@ -27,3 +27,7 @@ Onehouse is a past role; no departure date is assumed. Career text is based on t
 ## Hosting
 
 Publish `dist/` through any static host. `.openai/hosting.json` stores the existing Sites project identity. The GitHub remote stores source only; pushing there does not automatically deploy. No custom domain is configured yet.
+
+## Walking and destination panels
+
+The traveler animates along the road and opens a panel anchored to the destination after arriving. Click or hover an icon (450ms dwell), use trackpad scrolling, or press Down/Up arrows to advance/reverse. Escape closes the panel. Reduced motion makes travel instant. Visible station labels and instructions are omitted; accessible names remain. Adobe uses only its symbol, extracted from the downloaded logo.
