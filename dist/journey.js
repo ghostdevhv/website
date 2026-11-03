@@ -92,8 +92,8 @@
   if(e.key==='Escape'&&index>=0){exit();return;}
   if(!['ArrowUp','ArrowDown'].includes(e.key)||e.repeat)return;
   e.preventDefault();
-  if(index<0){if(e.key==='ArrowDown')show(0,false);return;}
-  show(Math.max(0,Math.min(stops.length-1,index+(e.key==='ArrowDown'?1:-1))),false);
+  if(index<0){if(e.key==='ArrowUp')show(0,false);return;}
+  show(Math.max(0,Math.min(stops.length-1,index+(e.key==='ArrowUp'?1:-1))),false);
  });
  // One chapter per trackpad gesture. Small deltas accumulate; momentum cannot skip stops.
  let wheelTotal=0,lastWheel=0,gestureUsed=false,touchY=null;
@@ -109,12 +109,12 @@
    wheelTotal+=delta;
    if(Math.abs(wheelTotal)<24)return;
    gestureUsed=true;
-   const direction=wheelTotal>0?1:-1;
+   const direction=wheelTotal<0?1:-1;
    if(index<0){if(direction>0)show(0,false);return;}
    const target=Math.max(0,Math.min(stops.length-1,index+direction));
    show(target,false);
  },{passive:false});
  hero.addEventListener('touchstart',event=>{if(!event.target.closest('.journey-panel')&&event.touches.length===1)touchY=event.touches[0].clientY;},{passive:true});
- hero.addEventListener('touchend',event=>{if(touchY===null)return;const delta=touchY-event.changedTouches[0].clientY;touchY=null;if(Math.abs(delta)<40)return;show(index<0?0:Math.max(0,Math.min(stops.length-1,index+(delta>0?1:-1))),false);},{passive:true});
+ hero.addEventListener('touchend',event=>{if(touchY===null)return;const delta=touchY-event.changedTouches[0].clientY;touchY=null;if(Math.abs(delta)<40)return;show(index<0?0:Math.max(0,Math.min(stops.length-1,index+(delta<0?1:-1))),false);},{passive:true});
  window.addEventListener('resize',()=>{position();anchorPanel();});position();
 })();
