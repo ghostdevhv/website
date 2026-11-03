@@ -1,12 +1,3 @@
-# Personal photographs
+# Personal photo collection
 
-Eight user-provided photos copied from Downloads. WebP derivatives are oriented, resized to a maximum edge of 1800px, and saved without source metadata. Originals remain untouched in Downloads. Display captions are editorial, not claims about locations or dates.
-
-- `lake-gold.webp`: `223648BF-A50D-4C95-820B-60A2BA2E76AB.JPG`
-- `lake-leaves.webp`: `20261002_180343.jpg`
-- `branches-at-dusk.webp`: `FE058FA7-EE0F-4A1E-BF17-0D0937636655.JPG`
-- `hilltop-evening.webp`: `42F31091-CBD2-4E06-865E-A67D5F916DC4.JPG`
-- `sun-over-water.webp`: `20250820_065937.jpg`
-- `sea-silhouette.webp`: `C836E3B2-54CE-43F9-A907-6D03858BD6F4.JPG`
-- `palm-lined-road.webp`: `IMG_8369.HEIC`
-- `tree-sunset.webp`: `IMG-20180423-WA0006.jpg`
+Original JPEGs were moved from the repository root to `full/` byte for byte, without re-encoding, resizing, or altering metadata. SHA-256 hashes, source filenames and display dimensions are recorded in manifest.json. Separate 720px JPEG previews in `thumbs/` are used only for gallery tiles. The viewer loads the original JPEG on demand. No exact duplicates were found among the seven new originals. Previous compressed gallery versions are removed from the deployed assets and retained locally under ignored `.local-artifacts/replaced-gallery/`.

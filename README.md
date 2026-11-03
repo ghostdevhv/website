@@ -37,3 +37,7 @@ Up arrows and upward trackpad gestures advance along the road; down reverses. Th
 ## Workspace
 
 The sole working checkout is `/Users/himanshuverma/Documents/website`. GitHub: `ghostdevhv/website`, branch `main`. There is no separate deployment checkout in Documents/Resume. Publish from this checkout using `.openai/hosting.json`; preserve the GitHub origin remote. Historical deployment archives, previews, photo-review files, and a Git bundle of the previous deployment history are retained locally in ignored `.local-artifacts/`. These artifacts are not uploaded to GitHub. Original personal photos remain in Downloads.
+
+## Photo collection
+
+Seven original JPEGs live in `dist/assets/photos/full/`. They were moved byte for byte from the repository root; source filenames and SHA-256 checksums are in `dist/assets/photos/manifest.json`. Separate 720px previews live in `thumbs/`. The compact About gallery opens an approximately 80%-viewport native dialog, loading the full-resolution original only on selection. Left/right buttons or arrow keys browse all photos; Escape, outside click, and the close button dismiss it. Native dialog focus returns to the selected tile. Previous compressed gallery images are archived under ignored `.local-artifacts/replaced-gallery/`, not deployed.
