@@ -24,4 +24,4 @@ One vertical page with five detailed work stories, toolkit, education, personal 
 
 ## Local scene and greeting
 
-The scene follows device-local hours: morning 05–11, afternoon 11–17, evening 17–20, night 20–05. These are time-of-day bands, not astronomical sunrise/sunset. A selector offers manual previews. The primary browser language chooses the initial greeting (33 supported language codes, English fallback), alternating with Hindi every nine seconds when motion is enabled. No geolocation, IP lookup, or personal data transmission.
+The scene follows device-local hours: morning 05–11, afternoon 11–17, evening 17–20, night 20–05. These are time-of-day bands, not astronomical sunrise/sunset. A hidden `?view=morning|afternoon|evening|night` query parameter offers manual previews; there is no visible scene selector. Invalid values revert to local time. The primary browser language chooses the initial greeting (33 supported language codes, English fallback), alternating with Hindi every nine seconds when motion is enabled. No geolocation, IP lookup, or personal data transmission.
