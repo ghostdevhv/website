@@ -95,7 +95,7 @@
   if(e.target.closest('input,textarea,select,[contenteditable=true]'))return;
   if(e.key==='Escape'&&index>=0){exit();return;}
   if(!['ArrowUp','ArrowDown'].includes(e.key)||e.repeat)return;
-  e.preventDefault();
+  actor.blur();e.preventDefault();
   if(index<0){if(e.key==='ArrowUp')show(0,false);return;}
   if(index===0&&e.key==='ArrowDown'){exit();return;}
   show(Math.max(0,Math.min(stops.length-1,index+(e.key==='ArrowUp'?1:-1))),false);
