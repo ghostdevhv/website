@@ -363,3 +363,7 @@ body[data-scene=afternoon] .road-shoulder{fill:#b9be9b}
 body[data-scene=night] .road-shoulder{fill:#807a90}
 body[data-scene=evening] .night-lamp{opacity:.3}
 body[data-scene=evening] .chai-window{fill:#ffd18a;filter:drop-shadow(0 0 3px #f5ad5c)}
+
+/* A fixed layer avoids mobile Safari's scrolling background-attachment behavior. */
+body.sky-page{background-color:var(--sky-top);background-image:none;background-attachment:scroll;min-height:100svh}
+body.sky-page::before{content:'';position:fixed;inset:0;min-height:100vh;min-height:100lvh;z-index:0;pointer-events:none;background:linear-gradient(90deg,var(--hero-shade),var(--hero-shade)),linear-gradient(180deg,var(--sky-top),var(--sky-middle) 35%,var(--sky-low) 68%,var(--sky-bottom));background-repeat:no-repeat;background-size:100% 100%}
