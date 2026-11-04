@@ -1,0 +1,319 @@
+% !TEX program = xelatex
+\documentclass[a4paper,10pt]{extarticle}
+
+%A Few Useful Packages
+%\usepackage{marvosym}
+\usepackage{fontspec} 					%for loading fonts
+\usepackage{xunicode,xltxtra,url,parskip} 	%other packages for formatting
+\RequirePackage{color,graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+%\usepackage[big]{layaureo} 				%better formatting of the A4 page
+% an alternative to Layaureo can be ** \usepackage{fullpage} **
+\usepackage{geometry}
+\geometry{a4paper,margin=0.40cm}
+%\usepackage{supertabular} 				%for Grades
+\usepackage{titlesec}					%custom \section
+\usepackage{fontawesome}
+\usepackage{multicol}
+
+%Setup hyperref package, and colours for links
+\usepackage{hyperref}
+\definecolor{linkcolour}{rgb}{0.3,0.3,0.3}
+\definecolor{subheadcolour}{rgb}{0.15,0.30,0.50}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour}
+
+%FONTS
+\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont[SmallCapsFont = Fontin SmallCaps]{Fontin}
+%%% modified for Karol Kozioł for ShareLaTeX use
+\setmainfont[
+SmallCapsFont = Fontin-SmallCaps.otf,
+BoldFont = Fontin-Bold.otf,
+ItalicFont = Fontin-Italic.otf
+]
+{Fontin.otf}
+%%%
+
+\setlength{\columnsep}{0cm}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{enumitem}
+\setlist[description]{%
+  topsep=10pt,               % space before start / after end of list
+  itemsep=1pt,               % space between items
+%  font={\bfseries\sffamily\color{red}}, % if colour is needed
+}
+
+\def\arraystretch{1.08}
+\renewcommand{\baselinestretch}{1.0}
+
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
+%Tweak a bit the top margin
+%\addtolength{\voffset}{-1.3cm}
+
+%Italian hyphenation for the word: ''corporations''
+% \hyphenation{im-pre-se}
+
+%-------------WATERMARK TEST [**not part of a CV**]---------------
+% \usepackage[absolute]{textpos}
+
+% \setlength{\TPHorizModule}{30mm}
+% \setlength{\TPVertModule}{\TPHorizModule}
+% \textblockorigin{2mm}{0.65\paperheight}
+% \setlength{\parindent}{0pt}
+
+%--------------------BEGIN DOCUMENT----------------------
+\begin{document}
+
+%WATERMARK TEST [**not part of a CV**]---------------
+%\font\wm=''Baskerville:color=787878'' at 8pt
+%\font\wmweb=''Baskerville:color=FF1493'' at 8pt
+%{\wm 
+%	\begin{textblock}{1}(0,0)
+%		\rotatebox{-90}{\parbox{500mm}{
+%			Typeset by Alessandro Plasmati with \XeTeX\  \today\ for 
+%			{\wmweb \href{http://www.aleplasmati.comuv.com}{aleplasmati.comuv.com}}
+%		}
+%	}
+%	\end{textblock}
+%}
+
+\pagestyle{empty} % non-numbered pages
+
+% \font\fb=''[cmr10]'' %for use with \LaTeX command
+
+
+
+% \begin{multicols}{3}
+% \normalsize \faGithub\ {\href{https://github.com/ghostdevhv}{\  ghostdevhv}}\\
+% \normalsize  \faLinkedinSquare\ {\href{https://www.linkedin.com/in/himanshu-v-1b930990/}{\  himanshu-v}}\\
+% \columnbreak
+% \normalsize\par{\centering{\huge\textsc{{Himanshu} Verma}}\par}% Your name
+% \vspace*{-0.15cm}
+% % \par{\centering\normalsize {\textsc{HSR Layout, Sector-1, Bengaluru, Karnataka}}\hfill\par}
+% \vspace{11.2cm}
+% \columnbreak
+% \raggedright\hfill\normalsize \faEnvelope\ {\href{mailto:himanshuverma167@gmail.com}{\  vhimanshu.iitkgp@gmail.com}}\\
+% \raggedright\hfill{\faPhone\ \  +91 8609273495}
+% \end{multicols}
+
+\begin{multicols}{3}
+\raggedright
+\normalsize \faGithub\ {\href{https://github.com/ghostdevhv}{ghostdevhv}}\\[4pt]
+\normalsize \faLinkedinSquare\ {\href{https://www.linkedin.com/in/himanshu-verma-1b930990/}{himanshu-verma}}
+
+\columnbreak
+
+\centering
+\vspace*{\fill}
+\smash{\raisebox{-0.5\baselineskip}{\huge\textsc{Himanshu Verma}}}
+\vspace*{\fill}
+
+\columnbreak
+
+\raggedleft
+\normalsize \faEnvelope\ {\href{mailto:vhimanshu.iitkgp@gmail.com}{vhimanshu.iitkgp@gmail.com}}\\[4pt]
+\normalsize \faPhone\ +91 8609273495
+\end{multicols}
+
+
+%--------------------TITLE-------------
+% \par{\centering
+% 		{\Huge Alessandro \textsc{Plasmati}
+% 	}\bigskip\par}
+
+%--------------------SECTIONS-----------------------------------
+%Section: Personal Data
+%\section{Personal Data}
+
+%\begin{tabular}{rl}
+    %\textsc{Place and Date of Birth:} & Someplace, Italy  | dd Month 1912 %\\
+    %\textsc{Address:}   & CV Inn 19, 20301, Milano, Italy \\
+    %\textsc{Phone:}     & +39 123 456789\\
+    %\textsc{email:}     & %\href{mailto:alessandro.plasmati@gmail.com}{alessandro.plasmati@gmail.c%om}
+%\end{tabular}
+%Section: Work Experience at the top
+\vspace{-0.4cm}
+\section{Work Experience}
+\vspace{2pt}
+
+\begin{tabularx}{\linewidth}{ l | X }
+% \vspace*{5pt}
+% \textsc{\normalsize{Aug 2017}} & \textbf{\normalsize{Pre-Placement Offer from Adobe Systems, Bangalore (Member of Technical Staff)}}\\
+
+% \textsc{Nov 2022} & \small{Laid off from the company 2 days after joining as part of the 13\% workforce reduction at Meta.} \hfill\textbf{Facebook Canada Ltd}\\
+% \multicolumn{2}{c}{}\\
+
+% \textsc{Nov 2022} & \textbf{{Software Engineer}} \hfill\textbf{Facebook Canada Ltd}\\
+% \textsc{} & \small{Laid off from the company 2 days after joining as part of the 13\% workforce reduction at Meta.}\\
+% \multicolumn{2}{c}{}\\
+
+\textsc{Oct 2023} & \textbf{{Senior Software Engineer}} \hfill\textbf{Onehouse, India}\\
+\textsc{Feb 2023} & \textcolor{subheadcolour}{\textit{\textbf{Agentic AI}}}\\[2pt]
+& \small{- Designed and built \textbf{Spark Agent} end-to-end as the sole engineer (Scala/Java driver plugin + supervised Rust subprocess + React UI), an in-driver AI assistant for live Spark debugging publicly launched at \href{https://quanton.dev/\#ai}{quanton.dev}.}\\
+& \small{- Architected the two-process system over versioned UDS-IPC with multi-provider LLM orchestration across \textbf{34 driver + Spark History Server tools}; validated at \textbf{$-$0.11\% TPC-DS wall-clock impact} and \textbf{p99 listener cost 233 $\mu$s} via JMH microbenchmarks.}\\
+& \small{- Hardened the agent's knowledge-base IP: \textbf{AES-256-GCM} encryption of 82 documents with per-file canary sigils, CI-gated leakage tests, citation-path validation, and per-tenant prompt watermarks.}\\
+& \small{- Led a new AI team to build and ship the \textbf{RCA agent} (architecture, LangGraph orchestration, MCP tool integration, access-control), handling first-level investigation on \textbf{100\% of production Sev1 alerts at 60--70\% accuracy} via a runbook-gated deterministic flow with bounded non-deterministic fallback.}\\
+& \small{- Engineered a three-layer token-cost reduction (response trimming, tool-history compaction, prompt caching) cutting per-investigation cost by \textbf{$\sim$30\%}; built secure multi-cloud dataplane connectivity across AWS and GCP.}\\
+& \\[-2pt]
+& \textcolor{subheadcolour}{\textit{\textbf{Platform \& Infrastructure}}}\\[2pt]
+& \small{- Built the infra foundation as the sole engineer, migrating all customer environments to Terraform-based automation, and shipped CI/CD pipelines reducing infra deployment time by \textbf{99\% (2 days $\rightarrow$ 1 hour)} with self-hosted GitHub runners cutting ops costs by \textbf{40\%}.}\\
+& \small{- Established a company-wide development environment using Terraform Cloud and GitHub with consistent resource tracking, TTL-based cleanup policies, and full auditability, resulting in a \textbf{30\% reduction in cloud costs}.}\\
+& \small{- Designed Java services for infrastructure orchestration (Terraform module updates) and customer onboarding (in-house Redis-based workflow engine automating Kubernetes cluster creation), with extensions for private clusters, \href{https://www.tigera.io/project-calico/}{Calico} networking, and custom AMIs.}\\
+& \small{- Led the GCP control plane rollout expanding the platform from AWS-only to multi-cloud -- defining secure infra patterns, hardening API request flows, coordinating external penetration testing, building a disaster recovery framework, and achieving \textbf{SOC 2 compliance}.}\\
+& \small{- Led a multi-phase initiative to autoscale EBS volumes based on Spark workloads (RFC, architecture, and rollout); evaluated NVMe-based alternatives, resulting in a \textbf{45\% reduction in EC2 + EBS costs} for a large customer.}\\
+& \small{- Designed a Java-based Spark router and workload-driven autoscaling algorithm to dynamically scale Spark applications based on query and resource demand.}\\
+& \small{- Led infra and on-call standups, unblocking engineers and coordinating across teams; drove operational improvements that reduced weekly alert volume from \textbf{$\sim$250 to $\sim$60} across Sev1--Sev3 incidents.}\\
+& \small{- Mentored infra engineers through code reviews, incident troubleshooting, and reliability practices, supporting the team as it scaled from \textbf{1 to 6 engineers}.}\\
+\multicolumn{2}{c}{}\\
+
+% \textsc{Oct 2022} & \textbf{{Software Engineer 2 - npm}} \hfill\textbf{GitHub India}\\
+% \textsc{Sept 2021} & \small{- Built captcha framework for npmjs.com by creating JS SDK for Octocaptcha service and integrating across multiple flows. }\\
+% & \small{- Developed GDPR-compliant data export pipeline using AWS (SQS, Lambda, EC2) with appropriate IAM configurations.}\\
+% & \small{- Worked with accessibility team to audit and fix issues across npm, implemented JWT secret rotation without breaking traffic, and enforced MFA for package maintainers. }\\
+
+% \textsc{Aug 2021} & \textbf{Software Engineer 2 - GHAE}\\
+
+% \textsc{Feb 2021} & \small{- Implemented custom VMSS agents in the azure pipeline instead of default agents after doing POC on multiple configuration sets to speed up the pipeline. Created custom agents and used in azure pipelines. Performance \textbf{improved by 50\%}. }\\
+% & \small{- Built monitoring and alerting system for new instance creation to notify the sales team using Geneva metrics (in-house monitoring platform) and ICM integration. }\\
+% % & \small{- Helped the team that was working on improving the dev environment. Created a VSCode task to deploy the changes on the test environment from a single click, rotated the PR deployments across the subscriptions to avoid quota issues, etc. }\\
+% \multicolumn{2}{c}{}\\
+
+\textsc{Oct 2022} & \textbf{Software Engineer II} \hfill \textbf{GitHub, India} \\
+\textsc{Sept 2021} & \small{- Built the captcha framework for npmjs.com (JavaScript SDK for Octocaptcha integrated across multiple user-facing flows) and a GDPR-compliant data export pipeline on AWS (SQS, Lambda, EC2) with scoped IAM permissions.} \\
+& \small{- Hardened platform security: JWT secret rotation without traffic impact, MFA enforcement for package maintainers, and resolution of accessibility audit findings across npm surfaces.} \\
+& \small{- Optimized Azure CI by replacing default pipeline agents with custom VMSS-based agents (\textbf{+50\%} pipeline performance), and built Geneva-metrics + ICM monitoring for new instance creation.} \\
+\multicolumn{2}{c}{} \\
+
+% \textsc{Jan 2021} & \textbf{Senior Member of Technical Staff (SDE-II) - Acrobat} \hfill\textbf{Adobe Inc, Noida}\\
+% \textsc{June 2018} & \small{- Developed "Liquid Mode" for Acrobat, an adaptive PDF view using content classification and extraction.}\\
+% & \small{- Optimized ML model parameters using Genetic Algorithm (C++), improving precision for good and bad pages by \textbf{1\% and 5\%} respectively, and automated model checkpoint selection with Python, reducing \textbf{manual effort by 66\%}. }\\
+% & \small{- Owned deployment pipeline for team component including code reviews, model registration, and end-to-end verification.}\\
+
+% & \textbf{Member of Technical Staff (SDE-I) - Adobe Connect}\\
+% & \small{- Led Connect mobile app development: implemented SSO, upgraded Adobe AIR SDK, and released iOS v2.7.0}\\
+% & \small{- Built unified recording interface with playback controls using React-Spectrum (Adobe's React framework).}\\
+% & \small{- Migrated file-share and web-link features from Flash to HTML using React and Java with full accessibility support.}\\
+% \multicolumn{2}{c}{}\\
+
+\textsc{Jan 2021} & \textbf{Senior Member of Technical Staff} \hfill \textbf{Adobe Inc., India} \\
+\textsc{June 2018} & \small{- Developed Acrobat "Liquid Mode", an adaptive PDF reading experience using content classification and extraction techniques.} \\
+& \small{- Tuned ML model parameters using a Genetic Algorithm (C++), improving precision for good and bad pages by \textbf{1\% and 5\%}, and automated checkpoint selection in Python, reducing manual effort by \textbf{66\%}.} \\
+& \small{- Owned deployment pipelines for team components, including code reviews, model registration, and end-to-end verification.} \\
+& \small{- Led development for Adobe Connect mobile apps, implementing SSO, upgrading Adobe AIR SDK, and shipping iOS v2.7.0.} \\
+& \small{- Migrated file sharing and web link features from Flash to HTML using React and Java with full accessibility support.} \\
+
+% \textsc{July 2017} & \textbf{{Product Development Intern}} \hfill\textbf{Adobe Inc, Bangalore}\\
+% \textsc{May 2017} & \small{- Adobe has an algorithmic bidding system which helps clients to find right bid, predict the cost incurred and returns fetched.}\\
+% & \small{- All keywords do not have enough historical data to come up with predictions which limits the bidding system's coverage and poses a risk of not getting clicks when placing bids on these keywords.}\\
+% & \small{- Proposed a method to cluster the sparse keywords using the dense keywords' features and increased the coverage by building a model which finds the probability of getting clicks on sparse keyword. }
+% \multicolumn{2}{c}{}\\
+
+% \textsc{{July 2016}} & \textbf{{Software Development Intern}} \hfill\textbf{Flipkart, Bangalore}\\
+% %& \footnotesize{- Preprocessed the whole dataset which includes cleaning of dataset \& and restructuring it into specific manner.}\\
+% \textsc{May 2016}& \small{- Flipkart has a lot of unstructured data in various forms like customer queries, inbound and outbound emails etc.}\\
+% & \small{- Proposed a domain specific chunking grammar, which was used along with various open information extractor tools like ReVerb, Ollie, Stanford CoreNLP to extract the phrases from each sentence.}\\
+% & \small{- Used word2Vec to generate word embeddings and Hierarchical Agglomerative Clustering (HAC) method to cluster them.}\\
+% \multicolumn{2}{c}{} \\
+
+% \textsc{{July 2016}} & \textbf{{Song Genre Classification using Deep Learning - M.Tech Project}} \hfill\textbf{IIT Kharagpur}\\
+% %& \footnotesize{- Preprocessed the whole dataset which includes cleaning of dataset \& and restructuring it into specific manner.}\\
+% \textsc{May 2016}& \small{- Extracted the features from audio files using libROSA and created a Convolutional Recurrent Neural Network (CRNN) which extracts the local features as well as take global structure into account and classifies audio files into 10 different genres.}\\
+% \multicolumn{2}{c}{} \\
+
+\end{tabularx}
+
+% \vspace{-0.6cm}
+% \section{Projects}
+% \vspace{-0.6cm}
+% \begin{tabular}{p{19.7cm}}
+% % \fontsize{9}{12}\selectfont{
+% \begin{description}[style=nextline, font=$\bullet$\hspace{2mm}\normalsize]
+%  \item[Song Genre Classification using Deep Learning] \small{Extracted the features from audio files using libROSA and created a Convolutional Recurrent Neural Network (CRNN) which extracts the local features as well as take global structure into account and classifies audio files into 10 different genres.}\vspace{0.1cm}
+%  \item[Lyrics generator using neural networks] Built a lyrics generator using TensorFlow that generates a new song in an artist's style. A Long Short Term Memory (LSTM) Neural Network learns the artists' styles of writing including words, rhymes, chorus patterns, etc. for the task.\vspace{0.1cm}
+%  \item[Detection of Diabetic Retinopathy in Eye Images] Pre-processed the data-set which includes fundus and OCT images by removing redundant information and created a Convolutional Neural Network (CNN) that learns and classifies images in different category based on severity of disease.\vspace{0.1cm}
+%  \item[Link Prediction using Apache Spark] Given a social graph, predict which links are expected to appear in the future. Used Logistic Regression (mllib library - Apache Spark) and Jaccard's similarity to calculate the probability of two unconnected nodes getting connected in the future.\vspace{0.1cm}
+%  \item[Academia - Course Management System] Built a complete course management system that supported authentication \& authorization, User Access Control for 4 different types of users, calendar support and all major features one can expect from a CMS.\vspace{0.1cm}
+%  \item[Compiler for Tiny C (A Subset of C Language)] Developed a TINY C compiler using compilers principles, techniques and tools. The tools used for development were Flex and Bison. The compiler was written entirely in C++ language.\vspace{0.1cm}
+%  \item[Restaurant Automation System] Developed a software built using JAVA Swing for a Restaurant Automation System which handles and automates the requests of the management and customers. Documented the software (SRS, SA/SD, UML, Test-Suite), which involved using UML case tools.
+
+%  \item[Medical Lab Automation System] Developed software using JAVA Swing for a Medical Lab Automation System which handles and automates all requests of the management and patients.
+% \end{description}
+% % }
+% \end{tabular}
+% \section{Academic Projects}
+
+% % \begin{tabular}{r|p{17.5cm}}
+% \begin{tabularx}{\linewidth}{ l | X }
+% %\textsc{\normalsize{Sep 2017}} & \textbf{\normalsize{Automatic Colorization of Grayscale Images}}\\
+% % \textsc{\normalsize{Feb 2016}} & \small{\textbf{Guide: }\textmd{\href{http://cse.iitkgp.ac.in/~pabitra/}{Professor Pabitra Mitra}}}\\
+% %\textsc{\normalsize{Aug 2017}} & \footnotesize{- Pre-processed the data-set which includes fundus and OCT images by removing redundant information and created a Convolutional Neural Network (CNN) that learns and classifies images in different category based on severity of disease. }\\
+% %\multicolumn{2}{c}{} \\
+
+% \textsc{\normalsize{Apr 2018}} & \textbf{\normalsize{Song Genre Classification using Deep Learning}}\\
+% % \textsc{\normalsize{Feb 2016}} & \small{\textbf{Guide: }\textmd{\href{http://cse.iitkgp.ac.in/~pabitra/}{Professor Pabitra Mitra}}}\\
+% \textsc{\normalsize{Jan 2018}} & \footnotesize{- Extracted the features from audio files using libROSA and created a Convolutional Recurrent Neural Network (CRNN) which extracts the local features as well as take global structure into account and classifies audio files into 10 different genres.}\\
+% \multicolumn{2}{c}{} \\
+
+% \textsc{\normalsize{Nov 2017}} & \textbf{\normalsize{Song Lyrics Generation using Neural Networks}}\\
+% % \textsc{\normalsize{Feb 2016}} & \small{\textbf{Guide: }\textmd{\href{http://cse.iitkgp.ac.in/~pabitra/}{Professor Pabitra Mitra}}}\\
+% \textsc{\normalsize{Aug 2017}} & \footnotesize{- Wrote a lyrics generator using TensorFlow that generates a new song in an artist's style. A Long Short Term Memory (LSTM) Neural Network learns the artists' styles of writing including words, rhymes, chorus patterns, etc. for the task. }\\
+% \multicolumn{2}{c}{} \\
+
+% \textsc{\normalsize{Mar 2017}} & \textbf{\normalsize{Detection of Diabetic Retinopathy in Eye Images}}\\
+% % \textsc{\normalsize{Feb 2016}} & \small{\textbf{Guide: }\textmd{\href{http://cse.iitkgp.ac.in/~pabitra/}{Professor Pabitra Mitra}}}\\
+% \textsc{\normalsize{Aug 2016}} & \footnotesize{- Pre-processed the data-set which includes fundus and OCT images by removing redundant information and created a Convolutional Neural Network (CNN) that learns and classifies images in different category based on severity of disease. }\\
+% \multicolumn{2}{c}{} \\
+
+% \textsc{\normalsize{Apr 2016}} & \textbf{\normalsize{Link Prediction using Apache Spark}} \\
+
+% % \textsc{\normalsize{Feb 2016}} & \small{\textbf{Guide: }\textmd{\href{http://cse.iitkgp.ac.in/~pabitra/}{Professor Pabitra Mitra}}}\\
+% \textsc{\normalsize{Mar 2016}}  & \footnotesize{- Given a social graph, predict which links are expected to appear in the future. Used Logistic Regression (mllib library - Apache Spark) and Jaccard's similarity to calculate the probability of two unconnected nodes getting connected in the future.}\\
+% \multicolumn{2}{c}{} \\
+% \textsc{\normalsize{Mar 2016}} & \textbf{\normalsize{Academia - Course Management System}}\\
+% % \textsc{\normalsize{Feb 2016}} & \small{\textbf{Guide: }\textmd{\href{http://cse.iitkgp.ac.in/~pabitra/}{Professor Pabitra Mitra}}}\\
+% \textsc{\normalsize{Feb 2016}} & \footnotesize{- Built a complete course management system that supported authentication \& authorization, User Access Control for 4 different types of users, calendar support and all major features one can expect from a CMS. }\\
+% \multicolumn{2}{c}{} \\
+
+% \textsc{\normalsize{Nov 2015}} & \textbf{\normalsize{Compiler for Tiny C (A Subset of C Language)}}\\
+% % \textsc {\normalsize{Aug 2015}} & \small{\textbf{Guide: }\textmd{\href{http://www.iitkgp.ac.in/fac-profiles/showprofile.php?empcode=SSmUZ}{Professor Partha Pratim Das}}}\\
+% \textsc {\normalsize{Aug 2015}} & \footnotesize{- Developed a TINY C compiler using compilers principles, techniques and tools. The tools used for development were Flex and Bison. The compiler was written entirely in C++ language.}\\
+% % & \footnotesize{- }\\
+% \multicolumn{2}{c}{} \\
+
+% \textsc{\normalsize{Apr 2015}} & \textbf{\normalsize{Restaurant Automation System}}\\
+% % \textsc {\normalsize{Mar 2015}} & \small{\textbf{Guide: }\textmd{\href{http://www.iitkgp.ac.in/fac-profiles/showprofile.php?empcode=SSmUZ}{Professor Partha Pratim Das}}}\\
+% \textsc {\normalsize{Mar 2015}} & \footnotesize{- Developed a software built using JAVA Swing for a Restaurant Automation System which handles and automates the requests of the management and customers. Documented the software (SRS,SA/SD,UML,Test-Suite),which involved using UML case tools.}\\
+% % & \footnotesize{- }\\
+% \multicolumn{2}{c}{} \\
+% % \end{tabular}
+% \end{tabularx}
+
+\vspace{0.1cm}
+\section{{Technical Skills}}
+\vspace{2pt}
+\begin{tabular}{r|p{15cm}}
+\textsc{Programming} & \textit{\textbf{Proficient:}} \small{Java, Python, C++, C} \quad \textit{\textbf{Competent:}} \small{Scala, Rust, JavaScript} \\
+\textsc{AI / Agents} & \small{LangGraph, LangChain, MCP, Langfuse}\\
+\textsc{Frameworks / Libraries} & \small{Apache Spark, React, Node.js, Express, FastAPI, TensorFlow, Keras, scikit-learn, pandas}\\
+\textsc{Data / Storage} & \small{PostgreSQL, MySQL, MongoDB, Firebase, OpenSearch, Prometheus}\\
+\textsc{Infrastructure / Platform} & \small{Terraform, Kubernetes, Docker, AWS, GCP, Azure, Linux, Git, CI/CD}\\
+\end{tabular}
+
+\vspace{0cm}
+\section{Education}
+\vspace{2pt}
+\begin{tabular}{r|p{17.5cm}}
+\textsc{Aug 2013 - Apr 2018} & Bachelors + Masters in \textbf{Computer Science and Engineering} - Indian Institute of Technology, Kharagpur\\
+\textsc & Teaching assistant for Compilers (CS31003) and Data Structures (CS19001)\\
+\end{tabular}
+
+% \vspace{-0.1cm}
+% \section{Scholastic Achievements}
+% \small{- Stood amongst top 2.6\% participants (rank 150) in the \textbf{Google APAC 2017 University Test} - Round B. Handle - \textbf{\textit{lannister}}}.\\
+% \small{- Team \textbf{\textbf{Curious\_moles}} qualified for the onsite round and stood amongst top 20\% participants in the \textbf{ACM-ICPC'16} held at Coimbatore.}
+\end{document}
