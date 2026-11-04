@@ -2,7 +2,7 @@ const galleryPhotos = [
   {
     "alt": "Sunset above wooded hills and a rocky lookout",
     "full": "/assets/photos/full/hilltop.jpg",
-    "thumb": "/assets/photos/thumbs/hilltop.webp",
+    "thumb": "/assets/photos/thumbs/hilltop-tile-320.webp",
     "width": 4032,
     "height": 3024,
     "location": "Wayanad, Kerala"
@@ -10,7 +10,7 @@ const galleryPhotos = [
   {
     "alt": "Birds flying above the golden sea at sunset",
     "full": "/assets/photos/full/golden-sea.jpg",
-    "thumb": "/assets/photos/thumbs/golden-sea.webp",
+    "thumb": "/assets/photos/thumbs/golden-sea-tile-320.webp",
     "width": 3000,
     "height": 4000,
     "location": "Lagos, Portugal"
@@ -18,7 +18,7 @@ const galleryPhotos = [
   {
     "alt": "Sunlight breaking through clouds above the shore",
     "full": "/assets/photos/full/sunlit-shore.jpg",
-    "thumb": "/assets/photos/thumbs/sunlit-shore.webp",
+    "thumb": "/assets/photos/thumbs/sunlit-shore-tile-320.webp",
     "width": 3024,
     "height": 4032,
     "location": "Goa, India"
@@ -26,7 +26,7 @@ const galleryPhotos = [
   {
     "alt": "A peach evening sky over a beach",
     "full": "/assets/photos/full/evening-beach.jpg",
-    "thumb": "/assets/photos/thumbs/evening-beach.webp",
+    "thumb": "/assets/photos/thumbs/evening-beach-tile-320.webp",
     "width": 4032,
     "height": 3024,
     "location": "Mumbai, India"
@@ -34,7 +34,7 @@ const galleryPhotos = [
   {
     "alt": "Deep red evening clouds above the city skyline",
     "full": "/assets/photos/full/city-dusk.jpg",
-    "thumb": "/assets/photos/thumbs/city-dusk.webp",
+    "thumb": "/assets/photos/thumbs/city-dusk-tile-320.webp",
     "width": 1600,
     "height": 1066,
     "location": "Toronto, Canada"
@@ -42,7 +42,7 @@ const galleryPhotos = [
   {
     "alt": "Dark tree branches against the evening sky",
     "full": "/assets/photos/full/branches.jpg",
-    "thumb": "/assets/photos/thumbs/branches.webp",
+    "thumb": "/assets/photos/thumbs/branches-tile-320.webp",
     "width": 3024,
     "height": 4032,
     "location": "Chiang Mai, Thailand"
@@ -100,11 +100,12 @@ const galleryPhotos = [
   const gallery = document.querySelector('.photo-tiles');
   const viewer = document.querySelector('#photo-viewer');
   const connection = navigator.connection;
+  const previews = [...gallery.querySelectorAll('img')];
   const queue = galleryPhotos.map(photo => photo.full);
   let inView = false, active = null, scheduled = false, stopped = false;
   function allowed() {
     return !stopped && inView && !document.hidden && !viewer.open &&
-      document.readyState === 'complete' && !connection?.saveData &&
+      document.readyState === 'complete' && previews.every(image => image.complete && image.naturalWidth > 0) && !connection?.saveData &&
       (!connection?.effectiveType || connection.effectiveType === '4g') &&
       (!connection?.downlink || connection.downlink >= 2);
   }
@@ -142,6 +143,7 @@ const galleryPhotos = [
     gallery.addEventListener('pointerenter', () => {inView=true;schedule();}, {once:true});
     gallery.addEventListener('touchstart', () => {inView=true;schedule();}, {once:true,passive:true});
   }
+  previews.forEach(image => image.addEventListener('load', schedule, {once:true}));
   window.addEventListener('load', schedule, {once:true});
   window.addEventListener('pagehide', () => {stopped=true;active?.abort();});
   window.addEventListener('pageshow', () => {stopped=false;schedule();});
