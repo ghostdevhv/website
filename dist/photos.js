@@ -93,3 +93,59 @@ const galleryPhotos = [
     document.documentElement.style.overflow = previousOverflow;
   });
 })();
+
+// Warm original photos after the visible gallery and initial page have loaded.
+// Only one low-priority transfer runs at a time; no background image decoding.
+(() => {
+  const gallery = document.querySelector('.photo-tiles');
+  const viewer = document.querySelector('#photo-viewer');
+  const connection = navigator.connection;
+  const queue = galleryPhotos.map(photo => photo.full);
+  let inView = false, active = null, scheduled = false, stopped = false;
+  function allowed() {
+    return !stopped && inView && !document.hidden && !viewer.open &&
+      document.readyState === 'complete' && !connection?.saveData &&
+      (!connection?.effectiveType || connection.effectiveType === '4g') &&
+      (!connection?.downlink || connection.downlink >= 2);
+  }
+  function schedule() {
+    if (scheduled || active || !queue.length || !allowed()) return;
+    scheduled = true;
+    const idle = window.requestIdleCallback || (callback => setTimeout(callback, 1200));
+    idle(async () => {
+      scheduled = false;
+      if (!allowed() || active || !queue.length) return;
+      const controller = new AbortController(), url = queue[0];
+      active = controller;
+      try {
+        const response = await fetch(url, {priority:'low', cache:'force-cache', signal:controller.signal});
+        if (response.ok) await response.arrayBuffer();
+        queue.shift();
+      } catch (error) {
+        if (error.name !== 'AbortError') queue.shift();
+      } finally {
+        active = null;
+        schedule();
+      }
+    });
+  }
+  function pauseOrResume() {
+    if (!allowed()) active?.abort();
+    else schedule();
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      inView = entries.some(entry => entry.isIntersecting);
+      pauseOrResume();
+    }).observe(gallery);
+  } else {
+    gallery.addEventListener('pointerenter', () => {inView=true;schedule();}, {once:true});
+    gallery.addEventListener('touchstart', () => {inView=true;schedule();}, {once:true,passive:true});
+  }
+  window.addEventListener('load', schedule, {once:true});
+  window.addEventListener('pagehide', () => {stopped=true;active?.abort();});
+  window.addEventListener('pageshow', () => {stopped=false;schedule();});
+  document.addEventListener('visibilitychange', pauseOrResume);
+  connection?.addEventListener('change', pauseOrResume);
+  viewer.addEventListener('close', schedule);
+})();
