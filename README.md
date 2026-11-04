@@ -25,8 +25,9 @@ The dev server uses http://127.0.0.1:4321/. Build output is `build/` (ignored by
 - `src/scripts/`: journey, regional greetings, local-time scenes, gallery and playlist behavior.
 - `src/styles/global.css`: current typography, interaction and design tokens.
 - `src/styles/landscape.css`: retained scene and page layout rules.
-- `public/assets/`: original gallery photos, responsive previews, logos and downloadable résumé.
-- `resume/`: résumé source, with the owner-confirmed Onehouse end date of October 2023.
+- `public/assets/`: original gallery photos, responsive previews and logos.
+
+The résumé button links directly to `Himanshu_Resume.pdf` on the `main` branch of the public [resume repository](https://github.com/ghostdevhv/resume). Update the PDF there; no website rebuild is required. Résumé source and PDF are maintained only in that repository.
 
 ## Interactions
 
