@@ -55,3 +55,75 @@ body.sky-page[data-scene=night]{--about-muted:#d7dbed;--about-soft:#bcc6e3}
 
 /* Contact uses the same sky palette as Home and About. */
 .contact-layout{max-width:1150px;margin:auto;min-height:calc(100svh - 140px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(45px,8vw,120px);align-items:center;padding:55px 0 90px}.contact-intro .eyebrow{color:var(--about-accent);font-size:10px;letter-spacing:2px;margin-bottom:26px}.contact-intro h1{color:var(--about-text);font-size:clamp(46px,6vw,76px);letter-spacing:-2.5px;margin:0 0 26px;line-height:1.1}.contact-intro .contact-lede{font-size:clamp(19px,2vw,24px);color:var(--about-text);line-height:1.6;max-width:460px;margin:0 0 20px}.contact-intro .contact-note{font-size:15px;color:var(--about-muted);line-height:1.8;max-width:440px}.contact-links{display:flex;flex-direction:column;border-top:1px solid var(--about-border)}.contact-link{display:flex;align-items:center;gap:20px;padding:27px 0;border-bottom:1px solid var(--about-border);color:var(--about-text);transition:color .2s}.contact-link:hover{color:var(--about-accent)}.contact-link-icon{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--about-border);background:var(--about-surface);border-radius:13px;flex-shrink:0}.contact-link-icon svg{width:23px;height:23px}.contact-link-text{min-width:0;flex:1}.contact-link-text strong{display:block;font-size:19px;font-weight:500;margin-bottom:6px}.contact-link-text>span{display:block;font-size:13px;color:var(--about-soft);line-height:1.5;overflow-wrap:anywhere}.contact-link-arrow{font-size:24px;color:var(--about-accent);transition:transform .2s}.contact-link:hover .contact-link-arrow{transform:translate(3px,-3px)}@media(max-width:760px){.contact-layout{grid-template-columns:1fr;gap:36px;min-height:0;padding:55px 0 75px}.contact-intro h1{font-size:58px}.contact-intro .contact-lede{font-size:21px}.contact-link{padding:23px 0}}@media(max-width:420px){.contact-layout{padding-top:40px}.contact-intro h1{font-size:48px}.contact-link{gap:14px}.contact-link-text>span{font-size:11px}.contact-link-icon{width:42px;height:42px}}
+
+/* Responsive layout: keep the introduction and touch journey in separate spaces. */
+.site,main,.about-copy,.off-clock-grid>*{min-width:0}
+img{max-width:100%}
+.site>header nav a{display:inline-flex;align-items:center;min-height:44px}
+.home-road{min-width:44px;min-height:44px}
+.road-station{min-width:44px;min-height:44px;justify-content:center}
+.journey-panel{overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.journey-controls button,.journey-panel-top button,.viewer-bottom button,.viewer-toolbar button{min-width:44px;min-height:44px;justify-content:center}
+.playlist-tracks li>div,.playlist-intro>div:last-child{min-width:0;overflow-wrap:anywhere}
+body.sky-page{background-size:100% 100lvh}
+@media(max-width:700px){
+ .site{padding-inline:6%}
+ .site>header{top:max(12px,env(safe-area-inset-top));left:6%;right:6%;gap:12px}
+ .site>header nav{gap:clamp(10px,3vw,22px);font-size:13px}
+ .inner-page .site>header{inset:auto;padding:16px 0}
+ .inner-page .chapter,.inner-page .work-section{padding-top:30px}
+ .sunset-intro{margin:0 -6vw;padding:100px 6vw 0;background:linear-gradient(180deg,var(--sky-top),var(--sky-middle) 35%,var(--sky-low) 68%,var(--sky-bottom))}
+ .sunset-intro .hero-copy{max-width:100%;position:relative;z-index:1}
+ .sunset-intro .eyebrow{font-size:9px;letter-spacing:1.4px;margin-bottom:16px}
+ .sunset-intro h1{font-size:clamp(30px,8vw,48px);line-height:1.15;margin-bottom:20px;letter-spacing:-1.4px}
+ .sunset-intro .greeting-word{font-size:.72em}
+ .sunset-intro .bio{font-size:clamp(14px,3.7vw,17px);line-height:1.65;max-width:540px}
+ .sunset-scene svg{position:absolute;bottom:0;width:100%;height:45%;transform:none;min-height:0}
+ .sunset-intro::after{background:linear-gradient(90deg,var(--hero-shade),var(--hero-shade) 25%,transparent 130%)}
+ .sunset-intro .hero-bottom{left:6vw;right:6vw;bottom:max(16px,env(safe-area-inset-bottom))}
+ .sunset-intro .hero-bottom .journey-line{font-size:15px}
+ .traveler{width:60px;min-height:60px}
+ .traveler>svg{width:44px;height:64px}
+ .station-mark{width:34px;height:34px;padding:5px}
+ .road-station[data-brand=adobe] .station-mark{width:34px;height:34px;padding:7px}
+ .road-station[data-brand=college] .station-mark{width:60px;height:44px}
+ .journey-panel{width:calc(100% - 32px);max-height:calc(100svh - 100px);padding:18px 20px;touch-action:pan-y}
+ .journey-panel h2{font-size:25px;line-height:1.2}
+ .journey-panel #stop-copy{font-size:15px;line-height:1.6}
+ .journey-panel #stop-detail{font-size:13px;line-height:1.6}
+ .journey-panel .stop-date{font-size:11px;line-height:1.6}
+ .about-introduction{padding-top:24px;gap:28px}
+ .about-copy h1{font-size:clamp(30px,7.8vw,40px);letter-spacing:-1px}
+ .off-clock .photo-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .contact-layout{padding-top:28px;gap:28px}
+ .contact-intro h1{font-size:clamp(42px,11vw,58px)}
+ .contact-link-text>span{font-size:12px}
+ .photo-viewer{width:88vw;max-width:88vw;height:78svh;max-height:calc(100svh - 32px)}
+ .viewer-toolbar h2{font-size:11px}
+ .viewer-toolbar{gap:6px}
+ .viewer-toolbar #photo-count{font-size:11px;white-space:nowrap}
+ .playlist-actions{flex-wrap:wrap}
+ .playlist-actions button,.playlist-actions>a{min-height:44px;display:inline-flex;align-items:center}
+}
+@media(max-width:700px) and (max-height:720px){
+ .sunset-intro{padding-top:82px}
+ .sunset-intro .eyebrow{margin-bottom:10px;font-size:8px}
+ .sunset-intro h1{font-size:30px;margin-bottom:14px}
+ .sunset-intro .bio{font-size:14px;line-height:1.5}
+ .sunset-scene svg{height:42%}
+ .sunset-intro .hero-bottom .journey-line{font-size:13px}
+}
+@media(max-height:500px) and (orientation:landscape){
+ .sunset-intro{padding:80px 5vw 25px}
+ .sunset-intro .hero-copy{max-width:52%}
+ .sunset-intro .eyebrow{font-size:8px;margin-bottom:7px}
+ .sunset-intro h1{font-size:28px;margin-bottom:10px}
+ .sunset-intro .bio{font-size:12px;line-height:1.5}
+ .sunset-scene svg{height:100%;width:100%;bottom:0}
+ .sunset-intro .hero-bottom{left:auto;right:5vw;bottom:12px}
+ .journey-panel{max-height:calc(100svh - 88px)}
+}
+@media(max-width:700px) and (orientation:portrait){.sunset-scene svg>rect[fill="url(#sky)"]{display:none}}
+@media(max-width:700px){.sunset-intro .hero-bottom p .journey-line[lang]{font-size:13px;max-width:130px;line-height:1.5;letter-spacing:0}}
+@media(max-height:500px) and (orientation:landscape){.sunset-scene svg{transform:none}.sunset-intro .hero-bottom p .journey-line[lang]{font-size:12px;line-height:1.4;max-width:180px}}
+@media(max-width:700px){.inner-page .work-section::before,.inner-page .chapter::before{inset-inline:0}}

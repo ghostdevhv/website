@@ -28,6 +28,10 @@
    button.addEventListener('pointerleave',()=>clearTimeout(hoverTimer));stations.append(button);return button;
  });
  function position(){
+  const svg=road.ownerSVGElement;
+  const compact=matchMedia('(max-width:700px) and (orientation:portrait)').matches;
+  svg.setAttribute('viewBox',compact?'650 300 1000 820':'0 0 1600 1050');
+  svg.setAttribute('preserveAspectRatio',compact?'none':'xMidYMid slice');
   const point=road.getPointAtLength(road.getTotalLength()*progress), matrix=road.getScreenCTM();
   if(!matrix)return;
   const screen=new DOMPoint(point.x,point.y).matrixTransform(matrix),r=hero.getBoundingClientRect();
@@ -75,14 +79,14 @@
   prev.disabled=false;prev.textContent='←';prev.setAttribute('aria-label',i===0?'Return to starting position':'Previous stop');next.textContent=i===stops.length-1?'↺':'→';next.setAttribute('aria-label',i===stops.length-1?'Return to starting position':'Next stop');
   stationButtons.forEach((b,n)=>{if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
   move(positions[i],()=>{
-   panel.hidden=false;anchorPanel();
+   panel.hidden=false;panel.scrollTop=0;anchorPanel();
    requestAnimationFrame(()=>{panel.classList.add('arrived');if(focus)title.focus({preventScroll:true});});
   });
  }
  function exit(){clearTimeout(hoverTimer);panel.classList.remove('arrived');panel.hidden=true;hero.classList.remove('journey-active');actor.setAttribute('aria-expanded','false');actor.setAttribute('aria-label','Explore my journey');index=-1;stationButtons.forEach(b=>b.removeAttribute("aria-current"));move(.95);actor.blur();}
  actor.addEventListener('click',()=>show(index<0?0:Math.min(index+1,stops.length-1)));
  document.addEventListener('click',event=>{
-  if(index<0||event.target.closest('#journey-panel'))return;
+  if(index<0||event.target.closest('#journey-panel,header,.road-station,#traveler'))return;
   exit();event.preventDefault();event.stopPropagation();
  },true);
  prev.addEventListener('click',()=>{if(index===0)exit();else if(index>0)show(index-1);});next.addEventListener('click',()=>{if(index===stops.length-1)exit();else show(index+1);});close.addEventListener('click',exit);
@@ -98,7 +102,7 @@
  // One chapter per trackpad gesture. Small deltas accumulate; momentum cannot skip stops.
  let wheelTotal=0,lastWheel=0,gestureUsed=false,touchY=null;
  hero.addEventListener('wheel',event=>{
-   if(event.ctrlKey||Math.abs(event.deltaX)>Math.abs(event.deltaY))return;
+   if(event.target.closest('#journey-panel')||event.ctrlKey||Math.abs(event.deltaX)>Math.abs(event.deltaY))return;
    event.preventDefault();
    const now=performance.now();
    if(now-lastWheel>220){wheelTotal=0;gestureUsed=false;}
@@ -115,7 +119,8 @@
    const target=Math.max(0,Math.min(stops.length-1,index+direction));
    show(target,false);
  },{passive:false});
- hero.addEventListener('touchstart',event=>{if(!event.target.closest('.journey-panel')&&event.touches.length===1)touchY=event.touches[0].clientY;},{passive:true});
+ hero.addEventListener('touchstart',event=>{touchY=null;if(!event.target.closest('.journey-panel,header')&&event.touches.length===1)touchY=event.touches[0].clientY;},{passive:true});
  hero.addEventListener('touchend',event=>{if(touchY===null)return;const delta=touchY-event.changedTouches[0].clientY;touchY=null;if(Math.abs(delta)<40)return;if(index===0&&delta>0){exit();return;}if(index<0&&delta>0)return;show(index<0?0:Math.max(0,Math.min(stops.length-1,index+(delta<0?1:-1))),false);},{passive:true});
+ hero.addEventListener('touchcancel',()=>{touchY=null;},{passive:true});
  window.addEventListener('resize',()=>{position();anchorPanel();});position();
 })();
