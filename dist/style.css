@@ -165,3 +165,77 @@ body.sky-page{background-size:100% 100lvh}
 @media(max-width:700px) and (orientation:portrait){.guide-desktop{display:none}.guide-touch{display:block}.journey-guide{padding:80px 20px}.journey-guide-card{width:240px;min-height:250px}}
 @media(max-height:500px){.journey-guide{padding:65px 16px}.journey-guide-card{min-height:0;padding:14px 24px}.guide-gestures{min-height:100px}.guide-scroll{height:72px;width:72px}.guide-keys{margin-bottom:0}.guide-keys svg{width:30px;height:27px}.guide-swipe{height:100px;width:100px}}
 @media(prefers-reduced-motion:reduce){.guide-scroll-dot,.guide-hand{animation:none;opacity:1;transform:none}}
+
+/* Work: one career index, followed by project-level detail. */
+.work-content{max-width:1160px;margin:auto;padding-bottom:70px}
+.work-introduction{padding:45px 0 48px;max-width:700px}
+.work-introduction .eyebrow{color:var(--about-accent);font-size:10px;letter-spacing:2px;margin-bottom:18px}
+.work-introduction h1{font-size:clamp(38px,5vw,64px);letter-spacing:-2px;margin-bottom:18px}
+.work-introduction>p:last-child{color:var(--about-muted);font-size:18px;line-height:1.65;margin:0}
+.career-timeline{display:block;font-size:inherit;font-weight:400;margin-bottom:70px}
+.career-timeline ol{list-style:none;margin:0;padding:0}
+.career-timeline li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:24px;position:relative;padding-bottom:30px}
+.career-timeline li:not(:last-child)::before{content:'';position:absolute;left:23px;top:48px;bottom:0;width:1px;background:var(--about-border)}
+.timeline-brand{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:#fff8ef;padding:9px;z-index:1}
+.timeline-brand img{width:100%;height:100%;object-fit:contain}
+.timeline-entry{padding:2px 0 26px;border-bottom:1px solid var(--about-border);min-width:0}
+.timeline-meta{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.timeline-meta>a{font-size:22px;font-weight:600;letter-spacing:-.4px}
+.timeline-meta>span{font-size:12px;line-height:1.6;color:var(--about-soft);text-align:right}
+.timeline-entry>p{font-size:14px;color:var(--about-muted);margin:9px 0 15px;line-height:1.6}
+.timeline-projects{display:flex;flex-wrap:wrap;gap:8px 24px}
+.timeline-projects a{font-size:13px;line-height:1.7;color:var(--about-accent);padding:5px 0}
+.company-work,.work-project{scroll-margin-top:28px}
+.company-work{margin:0 0 65px}
+.company-heading{display:flex;align-items:center;gap:14px;padding:20px 0;border-bottom:1px solid var(--about-border)}
+.company-heading>img{width:36px;height:36px;object-fit:contain;background:#fff8ef;border-radius:9px;padding:5px}
+.company-heading h2{font-size:28px;letter-spacing:-.7px;margin:0;font-weight:600}
+.company-heading>a{margin-left:auto;font-size:11px;color:var(--about-soft);padding:12px 0;text-align:right}
+.work-project{padding:35px 0 42px;border-bottom:1px solid var(--about-border)}
+.work-project h3{font-size:clamp(26px,3vw,36px);letter-spacing:-.9px;line-height:1.2;margin:0 0 14px;font-weight:600}
+.project-summary{font-size:18px;line-height:1.7;color:var(--about-muted);max-width:780px;margin:0 0 25px}
+.project-facts{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin:0 0 30px}
+.project-facts dt{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--about-accent);margin-bottom:10px}
+.project-facts dd{font-size:15px;line-height:1.8;color:var(--about-muted);margin:0;max-width:480px}
+.project-flow{padding:24px;margin:0 0 23px;background:var(--about-surface);border:1px solid var(--about-border);border-radius:12px}
+.project-flow figcaption{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--about-soft);margin-bottom:20px}
+.project-flow ol{display:grid;grid-auto-columns:minmax(0,1fr);grid-auto-flow:column;gap:34px;list-style:none;padding:0;margin:0}
+.project-flow li{position:relative;min-width:0;padding:13px 10px;border:1px solid var(--about-border);border-radius:7px;text-align:center}
+.project-flow li:not(:last-child)::after{content:'→';position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);color:var(--about-accent)}
+.project-flow strong{display:block;font-size:14px;font-weight:500;line-height:1.4}
+.project-flow li>span{display:block;font-size:11px;line-height:1.6;color:var(--about-soft);margin-top:5px}
+.project-depth{max-width:900px}
+.project-depth summary{display:flex;justify-content:space-between;align-items:center;min-height:44px;list-style:none;cursor:pointer;font-size:13px;color:var(--about-accent)}
+.project-depth summary::-webkit-details-marker{display:none}
+.project-depth summary>span{font-size:22px}
+.project-depth[open] summary>span{transform:rotate(45deg)}
+.project-depth h4{font-size:17px;font-weight:500;margin:24px 0 10px}
+.project-depth p,.work-note p{font-size:15px;line-height:1.85;color:var(--about-muted);max-width:850px;margin:0 0 18px}
+.work-note{padding:28px 0}
+.work-note h3{font-size:23px;margin:0 0 15px}
+.work-page a:hover{color:var(--about-accent)}
+@media(max-width:700px){
+ .work-introduction{padding:25px 0 35px}
+ .work-introduction h1{font-size:40px;letter-spacing:-1.2px}
+ .work-introduction>p:last-child{font-size:16px}
+ .career-timeline li{grid-template-columns:40px minmax(0,1fr);gap:16px;padding-bottom:24px}
+ .career-timeline li:not(:last-child)::before{left:19px;top:40px}
+ .timeline-brand{width:40px;height:40px;padding:7px}
+ .timeline-meta{display:block}
+ .timeline-meta>a{font-size:21px}
+ .timeline-meta>span{display:block;text-align:left;font-size:11px;margin-top:7px}
+ .timeline-entry>p{font-size:13px}
+ .timeline-projects{display:grid;gap:0}
+ .timeline-projects a{min-height:40px;display:flex;align-items:center;gap:10px}
+ .career-timeline{margin-bottom:38px}
+ .company-heading{gap:10px}
+ .company-heading h2{font-size:25px}
+ .company-heading>a{font-size:10px;max-width:80px}
+ .company-work{margin-bottom:40px}
+ .work-project{padding:28px 0}
+ .project-summary{font-size:16px}
+ .project-facts{grid-template-columns:1fr;gap:18px;margin-bottom:25px}
+ .project-flow{padding:19px}
+ .project-flow ol{grid-auto-flow:row;grid-template-columns:1fr;gap:28px}
+ .project-flow li:not(:last-child)::after{content:'↓';left:50%;top:calc(100% + 5px);transform:translateX(-50%)}
+}
