@@ -1,0 +1,49 @@
+<div class="time-control">
+  <button
+    id="time-toggle"
+    type="button"
+    aria-label="Choose time of day"
+    aria-expanded="false"
+    aria-controls="time-panel"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="21"
+      height="21"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
+    </svg>
+  </button>
+  <section
+    id="time-panel"
+    class="time-panel shadow-xl"
+    aria-label="Time of day"
+    hidden
+  >
+    <label for="time-range">
+      A different hour <output id="time-label">Afternoon</output>
+    </label>
+    <input
+      id="time-range"
+      type="range"
+      min="0"
+      max="3"
+      step="1"
+      aria-label="Time of day"
+    />
+    <div class="time-labels" aria-hidden="true">
+      <span>Dawn</span>
+      <span>Day</span>
+      <span>Dusk</span>
+      <span>Night</span>
+    </div>
+    <button type="button" id="time-auto">
+      Use my local time
+    </button>
+  </section>
+</div>

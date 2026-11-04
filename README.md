@@ -1,53 +1,47 @@
-# Himanshu’s personal website
+# Himanshu Verma — personal website
 
-A dependency-free static portfolio with a time-aware illustrated road journey.
+Astro 7 + Tailwind CSS 4, built as four static pages. Production: https://ghostdevhv.me/
 
-## Local preview
+## Development
 
-Run `python3 -m http.server 4173 --directory dist` and visit http://localhost:4173.
+Use Node **22.23.4+** and npm **9.6.5+**. `.nvmrc` pins the supported Node version.
+
+```sh
+nvm use
+npm ci
+npm run dev
+npm run check
+npm run build
+npm run preview
+```
+
+The dev server uses http://127.0.0.1:4321/. Build output is `build/` (ignored by Git).
 
 ## Source
 
-- `dist/index.html`: illustrated homepage and chapter panel.
-- `dist/journey.js`: six stops, consolidated Adobe internship/job chapter, and navigation.
-- `dist/style.css`: responsive layout and scene palettes.
-- `dist/sunset.js`: device-local time selection; hidden `?view=morning|afternoon|evening|night` overrides.
-- `dist/greeting.js`: paired greeting/journey-line translations using a curated timezone-to-language map. This approximates region; it does not infer nationality. English fallback.
-- `dist/work/`, `dist/about/`, `dist/contact/`: standalone destination pages.
-- `dist/assets/`: company logos and the illustrated KGP building; sources in `SOURCES.md`.
+- `src/pages/`: Home, About, Work and Contact routes.
+- `src/layouts/SiteLayout.astro`: shared metadata, styles and scripts.
+- `src/components/`: navigation, time selector and inline SVG road illustration.
+- `src/scripts/`: journey, regional greetings, local-time scenes, gallery and playlist behavior.
+- `src/styles/global.css`: current typography, interaction and design tokens.
+- `src/styles/landscape.css`: retained scene and page layout rules.
+- `public/assets/`: original gallery photos, responsive previews, logos and downloadable résumé.
+- `resume/`: résumé source, with the owner-confirmed Onehouse end date of October 2023.
 
-## Journey
+## Interactions
 
-Click the traveler, a road stop, or use two-finger vertical scrolling. Trackpad deltas accumulate to 24px, and momentum is limited to one chapter per gesture. Touch swipes and previous/next buttons are also supported. Escape closes the story. The landscape stays still; only small road dots move. Reduced-motion preferences disable those dots and greeting transitions.
+The traveller starts on the shoulder. Right arrow / upward swipe or trackpad movement advances; left arrow / downward movement returns. Going back from college returns to the shoulder. Reduced motion skips movement. Company checkpoints link to the matching Work sections.
 
-The greeting and journey line alternate every nine seconds between English and a region-associated language. Local-time bands: morning 05–11, afternoon 11–17, evening 17–20, night 20–05. No geolocation or tracking is used. Google Fonts are loaded externally with system fallbacks.
+The header time selector persists a chosen morning, afternoon, evening or night scene; Auto uses the visitor’s local time. `?view=morning|afternoon|evening|night` provides a temporary review override. Greetings alternate English with a regional language inferred from timezone, never precise geolocation.
 
-Onehouse is a past role; no departure date is assumed. Career text is based on the user-supplied LaTeX resume.
+Gallery tiles use small responsive WebP derivatives; original JPEGs remain byte-for-byte unchanged, verified by `public/assets/photos/manifest.json`. The photo dialog displays originals at approximately 80% of the viewport. Sequential low-priority cache warming waits for all thumbnails and skips detected slow/data-saving connections. Spotify is loaded only when its player is opened.
 
-## Hosting
+## Deployment
 
-Publish `dist/` through any static host. `.openai/hosting.json` stores the existing Sites project identity. The GitHub remote stores source only; pushing there does not automatically deploy. No custom domain is configured yet.
+`.github/workflows/pages.yml` installs with `npm ci`, runs checks and builds, then deploys `build/` to GitHub Pages. Changes to source, public assets and build configuration trigger it on main. The custom domain remains `ghostdevhv.me` with HTTPS. No Sites deployment is used.
 
-## Walking and destination panels
+The former `dist/` source is preserved in Git history and the ignored local legacy backup. Do not edit generated build HTML. Make changes in `src/` or `public/`.
 
-The traveler animates along the road and opens a panel anchored to the destination after arriving. Click or hover an icon (450ms dwell), use trackpad scrolling, or press Up/Down arrows to advance/reverse. Escape closes the panel. Reduced motion makes travel instant. Visible station labels and instructions are omitted; accessible names remain. Adobe uses only its symbol, extracted from the downloaded logo.
+## Design references
 
-Up arrows and upward trackpad gestures advance along the road; down reverses. The homepage introduction remains visible during the journey.
-
-## Workspace
-
-The sole working checkout is `/Users/himanshuverma/Documents/website`. GitHub: `ghostdevhv/website`, branch `main`. There is no separate deployment checkout in Documents/Resume. Publish from this checkout using `.openai/hosting.json`; preserve the GitHub origin remote. Historical deployment archives, previews, photo-review files, and a Git bundle of the previous deployment history are retained locally in ignored `.local-artifacts/`. These artifacts are not uploaded to GitHub. Original personal photos remain in Downloads.
-
-## Photo collection
-
-Six original JPEGs live in `dist/assets/photos/full/`. They were moved byte for byte from the repository root; source filenames and SHA-256 checksums are in `dist/assets/photos/manifest.json`. Separate 320px and 640px tile previews live in `thumbs/` and are selected with responsive image markup. Tile previews start loading with the About page; full-resolution cache warming waits until every preview is ready. The compact About gallery opens an approximately 80%-viewport native dialog, displaying the full-resolution original on selection. After the page finishes loading and the gallery comes into view, originals may be warmed in the HTTP cache through sequential, low-priority idle fetches. Automatic warming pauses offscreen/in a background tab and is skipped on detected slow or data-saving connections. Left/right buttons or arrow keys browse all photos; Escape, outside click, and the close button dismiss it. Native dialog focus returns to the selected tile. Previous compressed gallery images are archived under ignored `.local-artifacts/replaced-gallery/`, not deployed.
-
-Photo location labels were supplied by the owner. The lake-reflection image was removed from the public gallery and archived locally. Six photos remain; original JPEG bytes are unchanged. Onehouse departure is recorded as October 2023 per owner correction.
-
-## About music section
-
-The personal introduction is unchanged. A compact photography grid sits beside a music section on desktop and stacks on mobile. The Spotify agent verified the existing public BKK → BLR playlist and the five displayed song/artist pairs through the logged-in desktop app. This is a playlist preview, not an all-time or genre ranking. The Spotify iframe is loaded only when Open player is clicked; it is removed when returning to the track list. No playback starts automatically.
-
-## Shared page palette
-
-Home and About both load `sunset.js` and use the same local-time scene variables. About uses a quieter background derived from those sky/hill colours: pale peach morning, pale teal afternoon, violet/coral evening, and indigo night. Text and cards adapt for legibility. The hidden `?view=morning|afternoon|evening|night` override works on both pages. About retains a neutral dark photo viewer and click-to-load Spotify player.
+Emil Kowalski’s design-engineering and mobile-native guidance: https://github.com/emilkowalski/skills. Source font licenses are included under public assets; npm fontsource packages carry their own licenses. See `LOCAL-PREVIEW.md` for migration context and physical-device testing limitations.

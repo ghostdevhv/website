@@ -1,0 +1,352 @@
+@import "tailwindcss";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/newsreader";
+@import "./landscape.css";
+
+/* Editorial roadside study. Quiet surfaces, readable text, purposeful motion. */
+@theme {
+  --font-sans: "Manrope Variable", sans-serif;
+  --font-display: "Newsreader Variable", serif;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  font-family: "Manrope Variable", sans-serif;
+  font-weight: 450;
+}
+p,
+.project-narrative p,
+.about-copy > p:not(.eyebrow) {
+  font-size: 17px;
+  line-height: 1.85;
+  letter-spacing: 0;
+  font-weight: 450;
+}
+.sunset-intro h1,
+.about-copy h1,
+.work-introduction h1,
+.contact-intro h1 {
+  font-family: "Newsreader Variable", serif;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.sunset-intro h1 {
+  font-size: clamp(44px, 5.7vw, 82px);
+}
+.sunset-intro .greeting-word {
+  font-family: inherit;
+  font-size: 0.62em;
+  color: #f5e7cb;
+}
+.sunset-intro .bio {
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.8;
+  font-weight: 450;
+}
+.personality-line {
+  display: block;
+  margin-top: 0.65em;
+  color: #f8e3bd;
+}
+.sunset-intro .bio-exploration {
+  font-size: 0.85em;
+  opacity: 0.85;
+  margin-top: 0.8em;
+}
+body {
+  --sky-top: #575f80;
+  --sky-middle: #d29b8d;
+  --sky-low: #e8b989;
+  --sky-bottom: #eed6aa;
+  --hill-back: #85877f;
+  --hill-middle: #626f70;
+  --hill-top: #4f6160;
+  --hill-bottom: #2b4548;
+  --hill-front: #233e43;
+}
+body[data-scene="morning"] {
+  --sky-top: #7f9ca9;
+  --sky-middle: #d6bcb0;
+  --sky-low: #ebcfaa;
+  --sky-bottom: #f2dfbd;
+}
+body[data-scene="afternoon"] {
+  --sky-top: #588eaa;
+  --sky-middle: #87b6bf;
+  --sky-low: #b3cfc7;
+  --sky-bottom: #dbe1c8;
+}
+body[data-scene="night"] {
+  --sky-top: #101c2c;
+  --sky-middle: #23364b;
+  --sky-low: #45566a;
+  --sky-bottom: #7c7e88;
+}
+.scene-sun > g > circle:first-child {
+  display: none;
+}
+.scene-sun {
+  opacity: 0.85;
+}
+.sun-disc {
+  r: 95px;
+}
+.moon-disc {
+  r: 74px;
+}
+.moon-shade {
+  r: 70px;
+}
+.road-shoulder {
+  opacity: 0.7;
+}
+.station-mark {
+  box-shadow: 0 2px 8px #0002;
+  border-color: #d6c7a4;
+}
+.journey-panel {
+  box-shadow: 0 12px 40px #0002;
+  border-radius: 12px;
+  transition:
+    opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.site > header {
+  gap: 20px;
+}
+.site > header nav {
+  margin-left: auto;
+  gap: clamp(14px, 3vw, 38px);
+  font-size: 15px;
+}
+.time-control {
+  position: relative;
+  z-index: 20;
+  flex-shrink: 0;
+}
+#time-toggle {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #ffffff35;
+}
+.time-panel {
+  position: absolute;
+  right: 0;
+  top: 56px;
+  width: 270px;
+  padding: 22px;
+  background: #f5f0e6;
+  color: #263f43;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px #0003;
+  font-size: 13px;
+}
+.time-panel[hidden] {
+  display: none;
+}
+.time-panel label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.time-panel output {
+  font-weight: 650;
+}
+.time-panel input {
+  width: 100%;
+  accent-color: #496e65;
+  min-height: 32px;
+  cursor: pointer;
+}
+.time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  margin-top: 3px;
+}
+.time-panel button {
+  min-height: 44px;
+  font-size: 12px;
+  color: #496e65;
+  margin-top: 16px;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+a,
+button,
+input {
+  touch-action: manipulation;
+}
+button {
+  user-select: none;
+  -webkit-user-select: none;
+}
+button:active {
+  opacity: 0.8;
+}
+#time-toggle:active,
+.resume-download:active {
+  transform: scale(0.96);
+}
+@media (max-width: 700px) {
+  .site > header {
+    gap: 8px;
+  }
+  .site > header nav {
+    gap: 12px;
+    font-size: 12px;
+  }
+  .home-road {
+    min-width: 28px;
+  }
+  .time-control {
+    margin-left: 2px;
+  }
+  #time-toggle {
+    width: 36px;
+    height: 36px;
+  }
+  .time-panel {
+    width: min(270px, 85vw);
+  }
+  .sunset-intro h1 {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+  .sunset-intro .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .sunset-intro .bio {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .sunset-intro {
+    padding-top: 96px;
+  }
+  .sunset-scene svg {
+    height: 43%;
+  }
+  .personality-line {
+    margin-top: 0.5em;
+  }
+  .sunset-intro .hero-bottom {
+    margin-top: 16px;
+  }
+  .about-copy > p:not(.eyebrow),
+  .project-narrative p {
+    font-size: 16px;
+  }
+}
+@media (max-height: 720px) {
+  .sunset-intro .bio {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .sunset-intro h1 {
+    font-size: clamp(30px, 6vh, 48px);
+    margin-bottom: 16px;
+  }
+  .sunset-intro .eyebrow {
+    margin-bottom: 12px;
+  }
+  .sunset-intro {
+    padding-top: 85px;
+  }
+  .personality-line {
+    margin-top: 0.4em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .road-particles {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.photo-viewer {
+  margin: auto;
+}
+@media (max-width: 700px) {
+  .inner-page .site > header {
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+  }
+}
+@media (max-width: 380px) {
+  .site > header nav {
+    gap: 8px;
+    font-size: 11px;
+  }
+  .home-road {
+    min-width: 24px;
+  }
+  #time-toggle {
+    width: 32px;
+    height: 36px;
+  }
+}
+
+.journey-panel.instant {
+  transition: none;
+}
+.greeting-word[lang="hi"],
+.journey-line[lang="hi"] {
+  font-family: "Noto Sans Devanagari", "Manrope Variable", sans-serif;
+}
+
+.off-clock .collection-heading {
+  flex-wrap: wrap;
+}
+.off-clock .collection-heading > p {
+  display: block;
+  max-width: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 11px;
+}
+@media (max-width: 420px) {
+  .off-clock .collection-heading > p {
+    font-size: 10px;
+  }
+}
+
+.arm-left,
+.arm-right {
+  transform-box: view-box;
+  transform-origin: 35px 37px;
+}
+.walking .arm-left {
+  animation: back-arm 0.5s ease-in-out infinite alternate;
+}
+.walking .arm-right {
+  animation: back-arm 0.5s ease-in-out infinite alternate-reverse;
+}
+@keyframes back-arm {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .walking .arm-left,
+  .walking .arm-right {
+    animation: none;
+  }
+}
+/* Stop targets remain clickable when the traveller passes in front of them. */
+.road-station{z-index:6}

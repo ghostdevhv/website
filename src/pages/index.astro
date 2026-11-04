@@ -1,0 +1,296 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RoadScene from "../components/RoadScene.astro";
+---
+
+<SiteLayout title="Himanshu Verma · Software engineer" bodyClass="">
+  <main id="main">
+    <section class="intro sunset-intro" id="home" aria-labelledby="greeting">
+      <RoadScene />
+      <div class="hero-copy">
+        <p class="eyebrow">SOFTWARE ENGINEER · USUALLY UP FOR A PLAN</p>
+        <h1 id="greeting">
+          <span class="greeting-word" lang="hi" aria-hidden="true">
+            नमस्ते,
+          </span>
+          <span class="sr-only">Hi,</span>
+          <br />
+          I’m Himanshu<span class="orange">.</span>
+        </h1>
+        <p class="bio">
+          I build infrastructure at petabyte scale and AI agents for Spark
+          debugging and incident response.
+          <span class="personality-line">
+            Outside work, there’s usually music playing. I love sunset drives,
+            cooking, good food, LEGO, badminton, and games around a table.
+          </span>
+        </p>
+      </div>
+      <div id="road-stations" aria-label="Places along my journey"></div>
+      <button
+        id="traveler"
+        class="traveler"
+        aria-label="Explore my journey"
+        aria-controls="journey-panel"
+        aria-expanded="false"
+      >
+        <svg viewBox="0 0 70 100" aria-hidden="true">
+          <ellipse cx="35" cy="93" rx="22" ry="5" fill="#16172f" opacity=".3" />
+          <g class="walker">
+            <g class="leg-left">
+              <path
+                d="M28 61L25 89"
+                stroke="#233b4c"
+                stroke-width="9"
+                stroke-linecap="round"
+              />
+              <path
+                d="M20 93H30"
+                stroke="#f1e6cf"
+                stroke-width="6"
+                stroke-linecap="round"
+              />
+            </g>
+            <g class="leg-right">
+              <path
+                d="M42 61L45 89"
+                stroke="#233b4c"
+                stroke-width="9"
+                stroke-linecap="round"
+              />
+              <path
+                d="M40 93H50"
+                stroke="#f1e6cf"
+                stroke-width="6"
+                stroke-linecap="round"
+              />
+            </g>
+            <path d="M25 34Q35 29 45 34L48 64Q35 69 22 64Z" fill="#d9a160" />
+            <path
+              class="arm-left"
+              d="M24 38L17 61"
+              fill="none"
+              stroke="#c18c65"
+              stroke-width="7"
+              stroke-linecap="round"
+            />
+            <path
+              class="arm-right"
+              d="M46 38L53 61"
+              fill="none"
+              stroke="#c18c65"
+              stroke-width="7"
+              stroke-linecap="round"
+            />
+            <path d="M31 25V33M39 25V33" stroke="#bd845f" stroke-width="6" />
+            <path
+              d="M25 38Q35 30 45 38"
+              fill="none"
+              stroke="#304c50"
+              stroke-width="3"
+            />
+            <rect x="23" y="36" width="24" height="31" rx="8" fill="#456768" />
+            <path
+              d="M28 43Q35 40 42 43M28 55H42V62H28Z"
+              fill="none"
+              stroke="#8caba1"
+              stroke-width="1.5"
+              stroke-linejoin="round"
+            />
+            <circle cx="23" cy="20" r="3" fill="#bd845f" />
+            <circle cx="47" cy="20" r="3" fill="#bd845f" />
+            <path
+              d="M22 17Q19 2 34 2Q50 1 48 18L45 27Q35 31 25 26Z"
+              fill="#292e32"
+            />
+            <path
+              d="M26 8Q35 3 43 9"
+              fill="none"
+              stroke="#424244"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </g>
+        </svg>
+      </button>
+      <section
+        class="journey-panel"
+        id="journey-panel"
+        aria-labelledby="stop-title"
+        hidden
+      >
+        <div class="journey-panel-top">
+          <button id="journey-close" type="button" aria-label="Close journey">
+            ×
+          </button>
+        </div>
+        <p class="stop-place" id="stop-place"></p>
+        <h2 id="stop-title" tabindex="-1"></h2>
+        <p class="stop-date" id="stop-date"></p>
+        <p id="stop-copy"></p>
+        <p id="stop-detail"></p>
+        <div class="journey-controls">
+          <button id="journey-prev" type="button" aria-label="Previous stop">
+            <svg
+              class="ui-arrow"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M19 12H5m6-6-6 6 6 6" />
+            </svg>
+          </button>
+          <button id="journey-next" type="button" aria-label="Next stop">
+            <svg
+              class="ui-arrow"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </button>
+        </div>
+        <a href="/work/" class="journey-work-link">
+          Explore the work in detail{" "}
+          <svg
+            class="ui-arrow"
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M6 18 18 6M6 6h12v12" />
+          </svg>
+        </a>
+      </section>
+      <noscript>
+        <p class="journey-noscript">
+          Explore my <a href="/work/">work</a> or{" "}
+          <a href="/about/">get to know me</a>.
+        </p>
+      </noscript>
+      <div class="journey-guide" id="journey-guide" hidden>
+        <section
+          class="journey-guide-card"
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby="journey-guide-title"
+          aria-describedby="journey-guide-copy"
+        >
+          <h2 class="sr-only" id="journey-guide-title">
+            Explore my journey
+          </h2>
+          <p class="sr-only" id="journey-guide-copy">
+            <span class="guide-desktop">
+              Scroll upward to move forward, or use the left and right arrow
+              keys. You can also click a stop on the road.
+            </span>
+            <span class="guide-touch">
+              Swipe upward to move forward, or tap a stop on the road.
+            </span>{" "}
+            Quick navigation remains available at the top.
+          </p>
+          <div class="guide-gestures" aria-hidden="true">
+            <div class="guide-desktop">
+              <svg
+                class="guide-scroll"
+                viewBox="0 0 112 112"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="36" y="21" width="40" height="68" rx="20" />
+                <path class="guide-scroll-dot" d="M56 55v-12" />
+                <path class="guide-direction" d="M88 61V35m-6 6 6-6 6 6" />
+              </svg>
+              <div class="guide-keys">
+                <svg
+                  viewBox="0 0 44 40"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="1" y="1" width="42" height="38" rx="9" />
+                  <path d="M29 20H15m6-6-6 6 6 6" />
+                </svg>
+                <svg
+                  viewBox="0 0 44 40"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="1" y="1" width="42" height="38" rx="9" />
+                  <path d="M15 20h14m-6-6 6 6-6 6" />
+                </svg>
+              </div>
+            </div>
+            <div class="guide-touch">
+              <svg
+                class="guide-swipe"
+                viewBox="0 0 150 150"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path class="guide-direction" d="M113 75V29m-8 8 8-8 8 8" />
+                <path
+                  class="guide-swipe-trail"
+                  d="M66 69V27"
+                  stroke-dasharray="2 7"
+                />
+                <g class="guide-hand">
+                  <path d="M48 96V66a7 7 0 0 1 14 0v20-6a6 6 0 0 1 12 0v7-3a6 6 0 0 1 12 0v7-2a6 6 0 0 1 12 0v20c0 16-10 27-26 27-12 0-19-6-26-16l-12-17a7 7 0 0 1 11-8l10 12" />
+                  <path d="M62 86v10m12-9v11m12-7v10" opacity=".55" />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <button id="journey-guide-dismiss" type="button">
+            Got it
+          </button>
+        </section>
+      </div>
+      <div class="hero-bottom">
+        <p>
+          <span class="journey-line" lang="hi">
+            सफ़र जारी है।
+          </span>
+        </p>
+      </div>
+    </section>
+  </main>
+  <script>
+    import "../scripts/greeting.js";
+    import "../scripts/journey.js";
+    import "../scripts/tour.js";
+  </script>
+</SiteLayout>
