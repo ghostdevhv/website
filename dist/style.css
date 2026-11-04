@@ -239,3 +239,29 @@ body.sky-page{background-size:100% 100lvh}
  .project-flow ol{grid-auto-flow:row;grid-template-columns:1fr;gap:28px}
  .project-flow li:not(:last-child)::after{content:'↓';left:50%;top:calc(100% + 5px);transform:translateX(-50%)}
 }
+
+/* Company and project details form one continuous career timeline. */
+.work-page .project-collection{position:relative;margin-left:22px;padding-left:42px;border-left:1px solid var(--about-border)}
+.work-page .company-heading{position:relative;align-items:start;border-bottom:0;padding:0 0 8px}
+.work-page .company-heading>img{position:absolute;left:-67px;top:0;width:48px;height:48px;border-radius:50%;padding:9px}
+.company-identity h2{margin:0 0 9px;font-size:30px}
+.company-identity>p{font-size:15px;line-height:1.6;margin:0 0 6px;color:var(--about-muted)}
+.company-identity>span{font-size:12px;line-height:1.6;color:var(--about-soft)}
+.work-page .company-work{margin-bottom:65px}
+.work-page .work-project{padding:30px 0 36px}
+.work-page .work-project:last-child{border-bottom:0}
+.work-page .project-depth{margin-top:22px}
+.work-page .project-depth h4:first-child{margin-top:0}
+.work-page .company-work#now::before{content:'';position:absolute;left:-49px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--about-accent)}
+.work-page .company-work#now{position:relative}
+@media(max-width:700px){
+ .work-page .project-collection{margin-left:17px;padding-left:27px}
+ .work-page .company-heading>img{left:-45px;width:36px;height:36px;padding:6px}
+ .company-identity h2{font-size:26px}
+ .company-identity>p{font-size:13px}
+ .company-identity>span{font-size:11px}
+ .work-page .company-work{margin-bottom:45px}
+ .work-page .work-project h3{font-size:25px}
+ .work-page .project-flow{padding:15px}
+ .work-page .company-work#now::before{left:-33px}
+}
