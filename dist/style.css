@@ -127,3 +127,14 @@ body.sky-page{background-size:100% 100lvh}
 @media(max-width:700px){.sunset-intro .hero-bottom p .journey-line[lang]{font-size:13px;max-width:130px;line-height:1.5;letter-spacing:0}}
 @media(max-height:500px) and (orientation:landscape){.sunset-scene svg{transform:none}.sunset-intro .hero-bottom p .journey-line[lang]{font-size:12px;line-height:1.4;max-width:180px}}
 @media(max-width:700px){.inner-page .work-section::before,.inner-page .chapter::before{inset-inline:0}}
+
+/* Draw arrows rather than using platform-dependent emoji glyphs. */
+.ui-arrow{display:inline-block;width:1em;height:1em;vertical-align:-.12em;flex-shrink:0;overflow:visible}
+.site>header nav a{gap:5px}
+.contact-link-arrow{display:inline-flex;align-items:center;justify-content:center}
+.journey-controls{background:transparent;border:0;box-shadow:none}
+.journey-controls button,.journey-panel-top button,.viewer-bottom button,.viewer-toolbar button{appearance:none;-webkit-appearance:none;background:transparent;border:0;box-shadow:none;border-radius:0}
+@media(max-width:700px) and (orientation:portrait){
+ .sunset-intro .hero-bottom{position:static;margin-top:22px;align-items:start}
+ .sunset-intro .hero-bottom p .journey-line[lang]{max-width:100%;font-size:13px;line-height:1.5}
+}

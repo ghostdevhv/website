@@ -11,6 +11,7 @@
  const panel=document.querySelector('#journey-panel'), title=document.querySelector('#stop-title');
  const prev=document.querySelector('#journey-prev'),next=document.querySelector('#journey-next'),close=document.querySelector('#journey-close');
  let index=-1,progress=.95,walkFrame=0,walkVersion=0,hoverTimer;
+ const leftArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5m6-6-6 6 6 6"/></svg>',rightArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>',resetArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></svg>';
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const positions=[.91,.74,.57,.40,.23,.06];
  const stations=document.querySelector('#road-stations');
@@ -22,7 +23,7 @@
    const button=document.createElement('button');button.type='button';button.className='road-station';
    button.dataset.brand=brands[i];
    button.setAttribute('aria-label',`Visit ${stop.name}`);
-   const mark=document.createElement('span');mark.className='station-mark';if(assets[brands[i]]){const img=document.createElement('img');img.src=assets[brands[i]];img.alt=marks[i];img.addEventListener('error',()=>{mark.textContent=marks[i];},{once:true});mark.append(img);}else mark.textContent=marks[i];
+   const mark=document.createElement('span');mark.className='station-mark';if(assets[brands[i]]){const img=document.createElement('img');img.src=assets[brands[i]];img.alt=marks[i];img.addEventListener('error',()=>{mark.textContent=marks[i];},{once:true});mark.append(img);}else mark.innerHTML=rightArrow;
    button.append(mark);button.addEventListener('click',()=>show(i));
    button.addEventListener('pointerenter',event=>{if(event.pointerType==='touch'||index>=0)return;clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>show(i,false),450);});
    button.addEventListener('pointerleave',()=>clearTimeout(hoverTimer));stations.append(button);return button;
@@ -30,7 +31,7 @@
  function position(){
   const svg=road.ownerSVGElement;
   const compact=matchMedia('(max-width:700px) and (orientation:portrait)').matches;
-  svg.setAttribute('viewBox',compact?'650 300 1000 820':'0 0 1600 1050');
+  svg.setAttribute('viewBox',compact?'650 160 950 890':'0 0 1600 1050');
   svg.setAttribute('preserveAspectRatio',compact?'none':'xMidYMid slice');
   const point=road.getPointAtLength(road.getTotalLength()*progress), matrix=road.getScreenCTM();
   if(!matrix)return;
@@ -76,7 +77,7 @@
   index=i;const stop=stops[i];
   panel.classList.remove('arrived');panel.hidden=true;hero.classList.add('journey-active');actor.setAttribute('aria-expanded','true');actor.setAttribute('aria-label',`Continue journey: ${stop.name}`);
   for(const [selector,key]of [['#stop-place','place'],['#stop-title','title'],['#stop-date','date'],['#stop-copy','copy'],['#stop-detail','detail']])document.querySelector(selector).textContent=stop[key];
-  prev.disabled=false;prev.textContent='←';prev.setAttribute('aria-label',i===0?'Return to starting position':'Previous stop');next.textContent=i===stops.length-1?'↺':'→';next.setAttribute('aria-label',i===stops.length-1?'Return to starting position':'Next stop');
+  prev.disabled=false;prev.innerHTML=leftArrow;prev.setAttribute('aria-label',i===0?'Return to starting position':'Previous stop');next.innerHTML=i===stops.length-1?resetArrow:rightArrow;next.setAttribute('aria-label',i===stops.length-1?'Return to starting position':'Next stop');
   stationButtons.forEach((b,n)=>{if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
   move(positions[i],()=>{
    panel.hidden=false;panel.scrollTop=0;anchorPanel();
@@ -120,7 +121,7 @@
    show(target,false);
  },{passive:false});
  hero.addEventListener('touchstart',event=>{touchY=null;if(!event.target.closest('.journey-panel,header')&&event.touches.length===1)touchY=event.touches[0].clientY;},{passive:true});
- hero.addEventListener('touchend',event=>{if(touchY===null)return;const delta=touchY-event.changedTouches[0].clientY;touchY=null;if(Math.abs(delta)<40)return;if(index===0&&delta>0){exit();return;}if(index<0&&delta>0)return;show(index<0?0:Math.max(0,Math.min(stops.length-1,index+(delta<0?1:-1))),false);},{passive:true});
+ hero.addEventListener('touchend',event=>{if(touchY===null)return;const delta=touchY-event.changedTouches[0].clientY;touchY=null;if(Math.abs(delta)<40)return;if(index===0&&delta<0){exit();return;}if(index<0&&delta<0)return;show(index<0?0:Math.max(0,Math.min(stops.length-1,index+(delta>0?1:-1))),false);},{passive:true});
  hero.addEventListener('touchcancel',()=>{touchY=null;},{passive:true});
  window.addEventListener('resize',()=>{position();anchorPanel();});position();
 })();
