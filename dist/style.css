@@ -350,3 +350,16 @@ body.sky-page{background-size:100% 100lvh}
  .sunset-intro .bio{font-size:clamp(12px,2.45dvh,14px);line-height:1.5}
  .sunset-intro .hero-bottom{margin-top:14px}
 }
+
+/* Local landscape study: the road narrows into a ridge beside the sun. */
+.road-station .station-mark{transform:scale(var(--distance-scale,1));transform-origin:center}
+.traveler{transform:translate(-50%,-100%)}
+.traveler>svg{transform:scale(var(--traveler-scale,1));transform-origin:center bottom}
+.road-centerline{stroke-width:2.8;stroke-dasharray:14 22;stroke-linecap:round;stroke-opacity:.58}
+.scene-far .hill-back{opacity:.72}.scene-far .hill-middle{opacity:.9}
+.road-horizon-ridge{opacity:.95}
+body[data-scene=morning] .road-shoulder{fill:#bfa888}
+body[data-scene=afternoon] .road-shoulder{fill:#b9be9b}
+body[data-scene=night] .road-shoulder{fill:#807a90}
+body[data-scene=evening] .night-lamp{opacity:.3}
+body[data-scene=evening] .chai-window{fill:#ffd18a;filter:drop-shadow(0 0 3px #f5ad5c)}
