@@ -321,3 +321,9 @@ body.sky-page{background-size:100% 100lvh}
 .resume-download>span{font-size:10px;letter-spacing:1px;color:var(--about-soft)}
 .resume-download:hover{background:var(--about-surface)}
 @media(max-width:700px){.project-impact li{font-size:15px;line-height:1.75}.project-summary{margin-bottom:18px}}
+
+.project-narrative{max-width:900px;color:var(--about-muted)}
+.project-narrative h4{font-size:17px;font-weight:600;color:var(--about-text);margin:25px 0 10px}
+.project-narrative h4:first-child{margin-top:0}
+.project-narrative p{font-size:16px;line-height:1.85;margin:0 0 18px}
+@media(max-width:700px){.project-narrative p{font-size:15px;line-height:1.8}.project-narrative h4{font-size:16px}}
