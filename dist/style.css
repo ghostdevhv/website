@@ -138,3 +138,20 @@ body.sky-page{background-size:100% 100lvh}
  .sunset-intro .hero-bottom{position:static;margin-top:22px;align-items:start}
  .sunset-intro .hero-bottom p .journey-line[lang]{max-width:100%;font-size:13px;line-height:1.5}
 }
+
+/* First-visit guide leaves the road and quick navigation available. */
+.journey-guide{position:absolute;inset:0;z-index:8;pointer-events:none;background:linear-gradient(90deg,#0a1027e8,#0a1027a6 50%,#0a102730);display:flex;align-items:center;padding:100px 8vw 70px}
+.journey-guide[hidden]{display:none}
+.journey-guide-card{pointer-events:auto;width:min(390px,100%);padding:28px;border:1px solid #ffe4a24d;border-radius:18px;background:#171e35f5;box-shadow:0 18px 70px #0004;color:#fff6ee}
+.journey-guide-card .eyebrow{font-size:9px;letter-spacing:1.5px;color:#ffe4a2;margin:0 0 16px}
+.journey-guide-card h2{font-size:29px;line-height:1.2;letter-spacing:-.7px;margin:0 0 18px}
+.journey-guide-card p{font-size:15px;line-height:1.7;margin:0 0 16px}
+.journey-guide-card .guide-note{font-size:12px;color:#c6cbdb}
+.journey-guide-card button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:44px;padding:11px 18px;border-radius:24px;background:#ffe4a2;color:#242a40;font-size:14px;font-weight:600;margin-top:3px}
+.journey-guide-card button:focus-visible{outline:2px solid #fff6ee;outline-offset:5px}
+.guide-touch{display:none}
+.journey-onboarding .site>header{z-index:12}
+.journey-onboarding .traveler{z-index:9;filter:drop-shadow(0 0 12px #ffe4a299)}
+@media(pointer:coarse){.guide-desktop{display:none}.guide-touch{display:inline}}
+@media(max-width:700px) and (orientation:portrait){.journey-guide{align-items:start;padding:110px 6vw 25px;background:linear-gradient(180deg,#0a1027d9,#0a1027a6 48%,#0a102715)}.journey-guide-card{padding:23px}.journey-guide-card h2{font-size:26px}.guide-desktop{display:none}.guide-touch{display:inline}}
+@media(max-height:600px){.journey-guide{padding-top:75px;padding-bottom:16px;align-items:start}.journey-guide-card{padding:18px;max-height:calc(100svh - 92px);overflow:auto}.journey-guide-card h2{font-size:23px;margin-bottom:10px}.journey-guide-card p{font-size:13px;margin-bottom:10px}.journey-guide-card .eyebrow{margin-bottom:9px}}
