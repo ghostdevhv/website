@@ -30,7 +30,7 @@ The dev server uses http://127.0.0.1:4321/. Build output is `build/` (ignored by
 
 ## Interactions
 
-The traveller starts on the shoulder. Right arrow / upward swipe or trackpad movement advances; left arrow / downward movement returns. Going back from college returns to the shoulder. Reduced motion skips movement. Company checkpoints link to the matching Work sections.
+The traveller starts on the road, a noticeable distance before the college checkpoint. Right arrow / upward swipe or trackpad movement advances; left arrow / downward movement returns. Going back from college returns to that starting position. Reduced motion skips movement. Company checkpoints link to the matching Work sections.
 
 The header time selector persists a chosen morning, afternoon, evening or night scene; Auto uses the visitor’s local time. `?view=morning|afternoon|evening|night` provides a temporary review override. Greetings alternate English with a regional language inferred from timezone, never precise geolocation.
 

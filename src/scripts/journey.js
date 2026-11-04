@@ -70,7 +70,6 @@
     next = document.querySelector("#journey-next"),
     close = document.querySelector("#journey-close");
   const START_PROGRESS = 0.99;
-  let shoulder = 1;
   let index = -1,
     progress = START_PROGRESS,
     walkFrame = 0,
@@ -135,7 +134,8 @@
     return button;
   });
   let routeFrameKey = "",
-    visibleRouteEnd = 0.91;
+    visibleRouteEnd = 0.91,
+    roadStartEnd = 0.99;
   function position() {
     const svg = road.ownerSVGElement;
     const compact = compactScene.matches;
@@ -162,7 +162,7 @@
       routeFrameKey = frameKey;
       // Keep the first stop on the visible road, rather than clamping its icon away from it.
       const padX = compact ? 38 : 50,
-        padY = 42;
+        padY = 14;
       for (let p = 0.99; p >= 0.1; p -= 0.005) {
         const point = road.getPointAtLength(roadLength * p);
         const q = new DOMPoint(point.x, point.y).matrixTransform(matrix);
@@ -172,15 +172,24 @@
           q.y - r.top >= 110 &&
           q.y - r.top <= r.height - padY
         ) {
-          visibleRouteEnd = p;
+          roadStartEnd = p;
           break;
         }
       }
+      const screenScale = Math.sqrt(
+        (matrix.a ** 2 + matrix.b ** 2 + matrix.c ** 2 + matrix.d ** 2) / 2,
+      );
+      const entranceGap = (compact ? 96 : 125) / (roadLength * screenScale);
+      visibleRouteEnd = Math.max(0.25, roadStartEnd - entranceGap);
     }
     const routeScale = visibleRouteEnd / positions[0];
-    const point = road.getPointAtLength(
-      roadLength * Math.min(1, progress * routeScale),
-    );
+    const roadProgress =
+      progress > positions[0]
+        ? visibleRouteEnd +
+          ((roadStartEnd - visibleRouteEnd) * (progress - positions[0])) /
+            (START_PROGRESS - positions[0])
+        : progress * routeScale;
+    const point = road.getPointAtLength(roadLength * Math.min(1, roadProgress));
     const screen = new DOMPoint(point.x, point.y).matrixTransform(matrix);
     stationButtons.forEach((button, i) => {
       const p = road.getPointAtLength(roadLength * positions[i] * routeScale);
@@ -193,8 +202,8 @@
       button.style.top = `${q.y - r.top}px`;
     });
     actor.style.setProperty("--traveler-scale", `${0.58 + 0.42 * progress}`);
-    actor.style.left = `${Math.max(45, Math.min(r.width - 50, screen.x - r.left - (compact ? 54 : 96) * shoulder))}px`;
-    actor.style.top = `${Math.max(150, Math.min(r.height - 12, screen.y - r.top + 4 - (compact ? 30 : 52) * shoulder))}px`;
+    actor.style.left = `${Math.max(45, Math.min(r.width - 50, screen.x - r.left))}px`;
+    actor.style.top = `${Math.max(150, Math.min(r.height - 12, screen.y - r.top + 4))}px`;
   }
   function anchorPanel() {
     if (index < 0 || panel.hidden) return;
@@ -228,9 +237,8 @@
   function move(target, arrived = () => {}, instant = false) {
     cancelAnimationFrame(walkFrame);
     const version = ++walkVersion;
-    const targetShoulder = target === START_PROGRESS ? 1 : 0;
+    const isEntrance = target === START_PROGRESS || progress > positions[0];
     if (reduced.matches || instant) {
-      shoulder = targetShoulder;
       progress = target;
       position();
       actor.classList.remove("walking");
@@ -238,18 +246,15 @@
       return;
     }
     const start = progress,
-      startShoulder = shoulder,
       begin = performance.now(),
-      duration =
-        Math.abs(targetShoulder - startShoulder) > 0.01
-          ? 1100
-          : Math.max(550, Math.min(2300, Math.abs(target - start) * 4000));
+      duration = isEntrance
+        ? 1100
+        : Math.max(550, Math.min(2300, Math.abs(target - start) * 4000));
     actor.classList.add("walking");
     function step(now) {
       if (version !== walkVersion) return;
       const t = Math.min(1, (now - begin) / duration),
         ease = t * t * (3 - 2 * t);
-      shoulder = startShoulder + (targetShoulder - startShoulder) * ease;
       progress = start + (target - start) * ease;
       position();
       if (t < 1) walkFrame = requestAnimationFrame(step);
