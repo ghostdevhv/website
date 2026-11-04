@@ -1,6 +1,8 @@
 # Himanshu Verma — personal website
 
-Astro 7 + Tailwind CSS 4, built as four static pages. Production: https://ghostdevhv.me/
+Astro 7 + Tailwind CSS 4, built as four static pages.
+
+[Website](https://ghostdevhv.me/) · [Source](https://github.com/ghostdevhv/website) · [Résumé](https://github.com/ghostdevhv/resume)
 
 ## Development
 
@@ -39,7 +41,15 @@ Gallery tiles use small responsive WebP derivatives; original JPEGs remain byte-
 
 ## Deployment
 
-`.github/workflows/pages.yml` installs with `npm ci`, runs checks and builds, then deploys `build/` to GitHub Pages. Changes to source, public assets and build configuration trigger it on main. The custom domain remains `ghostdevhv.me` with HTTPS. No Sites deployment is used.
+[Check and deploy website](https://github.com/ghostdevhv/website/actions/workflows/pages.yml) runs `npm ci`, `npm run check`, and `npm run build` for pull requests and pushes to `main`. Pull requests validate only. Successful main builds upload `build/` and deploy to GitHub Pages. You can also select **Run workflow** on `main` for a manual deployment.
+
+The build job has read-only repository access; only the deployment job has Pages and OIDC write permissions. No personal access tokens or cross-repository secrets are required. GitHub Actions are pinned to verified release commits, with monthly Dependabot update pull requests. Node is read from `.nvmrc`, and npm uses the committed lockfile and dependency cache.
+
+Repository settings: **Pages → Source → GitHub Actions**, custom domain `ghostdevhv.me`, HTTPS enforced. `public/CNAME` preserves the domain in the build. Namecheap DNS and email forwarding are managed separately; publishing does not change them. The legacy `.openai/hosting.json` is retained metadata and is not used by this pipeline.
+
+To release, review locally using the checks above, then push or merge to `main` and confirm the Actions run succeeds. To roll back a change, revert its commit on `main`; that creates a fresh deployment. No version tag or GitHub Release is required.
+
+The résumé links to the public resume repository rather than the website artifact. A PDF update there becomes available through the same button after GitHub’s raw-file cache refreshes, without this workflow running.
 
 The former `dist/` source is preserved in Git history and the ignored local legacy backup. Do not edit generated build HTML. Make changes in `src/` or `public/`.
 
