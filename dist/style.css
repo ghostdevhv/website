@@ -139,19 +139,29 @@ body.sky-page{background-size:100% 100lvh}
  .sunset-intro .hero-bottom p .journey-line[lang]{max-width:100%;font-size:13px;line-height:1.5}
 }
 
-/* First-visit guide leaves the road and quick navigation available. */
-.journey-guide{position:absolute;inset:0;z-index:8;pointer-events:none;background:linear-gradient(90deg,#0a1027e8,#0a1027a6 50%,#0a102730);display:flex;align-items:center;padding:100px 8vw 70px}
+/* First-visit gestures leave the road and quick navigation available. */
+.journey-guide{position:absolute;inset:0;z-index:8;pointer-events:none;background:#0a102755;display:grid;place-items:center;padding:80px 20px}
 .journey-guide[hidden]{display:none}
-.journey-guide-card{pointer-events:auto;width:min(390px,100%);padding:28px;border:1px solid #ffe4a24d;border-radius:18px;background:#171e35f5;box-shadow:0 18px 70px #0004;color:#fff6ee}
-.journey-guide-card .eyebrow{font-size:9px;letter-spacing:1.5px;color:#ffe4a2;margin:0 0 16px}
-.journey-guide-card h2{font-size:29px;line-height:1.2;letter-spacing:-.7px;margin:0 0 18px}
-.journey-guide-card p{font-size:15px;line-height:1.7;margin:0 0 16px}
-.journey-guide-card .guide-note{font-size:12px;color:#c6cbdb}
-.journey-guide-card button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:44px;padding:11px 18px;border-radius:24px;background:#ffe4a2;color:#242a40;font-size:14px;font-weight:600;margin-top:3px}
-.journey-guide-card button:focus-visible{outline:2px solid #fff6ee;outline-offset:5px}
+.journey-guide-card{pointer-events:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;width:260px;max-width:100%;min-height:265px;padding:24px 30px;border:1px solid #fff6ee38;border-radius:24px;background:#17203966;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 14px 60px #07102626;color:#fff6ee}
+.journey-guide-card .sr-only{margin:0;padding:0}
+.guide-gestures{display:grid;place-items:center;min-height:165px;width:100%;color:#ffe4a2}
+.guide-scroll{display:block;width:112px;height:112px;margin:auto}
+.guide-keys{display:flex;justify-content:center;gap:10px;margin:0 auto 14px;color:#fff6eecc}
+.guide-keys svg{width:40px;height:36px}
+.guide-scroll-dot{animation:guide-scroll-up 1.8s ease-in-out infinite}
+.guide-direction{opacity:.6}
+.guide-swipe{display:block;width:150px;height:150px;margin:auto}
+.guide-hand{animation:guide-swipe-up 2.2s ease-in-out infinite}
+.guide-swipe-trail{opacity:.35}
+.journey-guide-card button{display:inline-flex;align-items:center;justify-content:center;min-width:90px;min-height:44px;padding:10px 21px;border:1px solid #fff6ee55;border-radius:24px;background:#fff6ee12;color:#fff6ee;font-size:13px;font-weight:500;margin-top:10px;transition:background .2s}
+.journey-guide-card button:hover{background:#fff6ee25}
+.journey-guide-card button:focus-visible{outline:2px solid #ffe4a2;outline-offset:5px}
 .guide-touch{display:none}
 .journey-onboarding .site>header{z-index:12}
 .journey-onboarding .traveler{z-index:9;filter:drop-shadow(0 0 12px #ffe4a299)}
-@media(pointer:coarse){.guide-desktop{display:none}.guide-touch{display:inline}}
-@media(max-width:700px) and (orientation:portrait){.journey-guide{align-items:start;padding:110px 6vw 25px;background:linear-gradient(180deg,#0a1027d9,#0a1027a6 48%,#0a102715)}.journey-guide-card{padding:23px}.journey-guide-card h2{font-size:26px}.guide-desktop{display:none}.guide-touch{display:inline}}
-@media(max-height:600px){.journey-guide{padding-top:75px;padding-bottom:16px;align-items:start}.journey-guide-card{padding:18px;max-height:calc(100svh - 92px);overflow:auto}.journey-guide-card h2{font-size:23px;margin-bottom:10px}.journey-guide-card p{font-size:13px;margin-bottom:10px}.journey-guide-card .eyebrow{margin-bottom:9px}}
+@keyframes guide-scroll-up{0%,15%{transform:translateY(8px);opacity:0}35%{opacity:1}75%{transform:translateY(-5px);opacity:1}100%{transform:translateY(-5px);opacity:0}}
+@keyframes guide-swipe-up{0%,15%{transform:translateY(12px);opacity:.3}35%{opacity:1}75%{transform:translateY(-14px);opacity:1}100%{transform:translateY(-14px);opacity:.3}}
+@media(pointer:coarse){.guide-desktop{display:none}.guide-touch{display:block}}
+@media(max-width:700px) and (orientation:portrait){.guide-desktop{display:none}.guide-touch{display:block}.journey-guide{padding:80px 20px}.journey-guide-card{width:240px;min-height:250px}}
+@media(max-height:500px){.journey-guide{padding:65px 16px}.journey-guide-card{min-height:0;padding:14px 24px}.guide-gestures{min-height:100px}.guide-scroll{height:72px;width:72px}.guide-keys{margin-bottom:0}.guide-keys svg{width:30px;height:27px}.guide-swipe{height:100px;width:100px}}
+@media(prefers-reduced-motion:reduce){.guide-scroll-dot,.guide-hand{animation:none;opacity:1;transform:none}}
