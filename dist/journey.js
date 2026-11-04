@@ -14,6 +14,8 @@
  const leftArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5m6-6-6 6 6 6"/></svg>',rightArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>',resetArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></svg>';
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const positions=[.91,.74,.57,.40,.23,.06];
+ const compactScene=matchMedia('(max-width:700px) and (orientation:portrait)');
+ const roadLength=road.getTotalLength();
  const stations=document.querySelector('#road-stations');
  const marks=['IIT KGP','Flipkart','Adobe','GitHub','Onehouse','→'];
  const brands=['college','flipkart','adobe','github','onehouse','now'];
@@ -30,14 +32,16 @@
  });
  function position(){
   const svg=road.ownerSVGElement;
-  const compact=matchMedia('(max-width:700px) and (orientation:portrait)').matches;
-  svg.setAttribute('viewBox',compact?'650 160 950 890':'0 0 1600 1050');
-  svg.setAttribute('preserveAspectRatio',compact?'none':'xMidYMid slice');
-  const point=road.getPointAtLength(road.getTotalLength()*progress), matrix=road.getScreenCTM();
+  const compact=compactScene.matches;
+  const viewBox=compact?'650 160 950 890':'0 0 1600 1050';
+  const aspect=compact?'none':'xMidYMid slice';
+  if(svg.getAttribute('viewBox')!==viewBox)svg.setAttribute('viewBox',viewBox);
+  if(svg.getAttribute('preserveAspectRatio')!==aspect)svg.setAttribute('preserveAspectRatio',aspect);
+  const point=road.getPointAtLength(roadLength*progress), matrix=road.getScreenCTM();
   if(!matrix)return;
   const screen=new DOMPoint(point.x,point.y).matrixTransform(matrix),r=hero.getBoundingClientRect();
   stationButtons.forEach((button,i)=>{
-    const p=road.getPointAtLength(road.getTotalLength()*positions[i]);
+    const p=road.getPointAtLength(roadLength*positions[i]);
     const q=new DOMPoint(p.x,p.y).matrixTransform(matrix);
     button.style.left=`${Math.max(40,Math.min(r.width-55,q.x-r.left))}px`;
     button.style.top=`${Math.max(100,Math.min(r.height-38,q.y-r.top))}px`;
@@ -127,5 +131,20 @@
  hero.addEventListener('touchstart',event=>{touchY=null;if(!event.target.closest('.journey-panel,.journey-guide-card,header')&&event.touches.length===1)touchY=event.touches[0].clientY;},{passive:true});
  hero.addEventListener('touchend',event=>{if(touchY===null)return;const delta=touchY-event.changedTouches[0].clientY;touchY=null;if(Math.abs(delta)<40)return;if(index===0&&delta<0){exit();return;}if(index<0&&delta<0)return;show(index<0?0:Math.max(0,Math.min(stops.length-1,index+(delta>0?1:-1))),false);},{passive:true});
  hero.addEventListener('touchcancel',()=>{touchY=null;},{passive:true});
- window.addEventListener('resize',()=>{position();anchorPanel();});position();
+ let layoutFrame=0;
+ function refreshLayout(){
+  if(layoutFrame)return;
+  layoutFrame=requestAnimationFrame(()=>{layoutFrame=0;position();anchorPanel();});
+ }
+ window.addEventListener('resize',refreshLayout);
+ window.addEventListener('orientationchange',refreshLayout);
+ window.visualViewport?.addEventListener('resize',refreshLayout);
+ compactScene.addEventListener?.('change',refreshLayout);
+ if('ResizeObserver' in window){
+  const observer=new ResizeObserver(refreshLayout);
+  [hero,road.ownerSVGElement,panel,hero.querySelector('.hero-copy')].forEach(element=>observer.observe(element));
+ }
+ document.fonts?.ready.then(refreshLayout);
+ document.fonts?.addEventListener('loadingdone',refreshLayout);
+ position();refreshLayout();
 })();
