@@ -2,7 +2,7 @@ const galleryPhotos = [
   {
     "alt": "Sunset above wooded hills and a rocky lookout",
     "full": "/assets/photos/full/hilltop.jpg",
-    "thumb": "/assets/photos/thumbs/hilltop.jpg",
+    "thumb": "/assets/photos/thumbs/hilltop.webp",
     "width": 4032,
     "height": 3024,
     "location": "Wayanad, Kerala"
@@ -10,7 +10,7 @@ const galleryPhotos = [
   {
     "alt": "Birds flying above the golden sea at sunset",
     "full": "/assets/photos/full/golden-sea.jpg",
-    "thumb": "/assets/photos/thumbs/golden-sea.jpg",
+    "thumb": "/assets/photos/thumbs/golden-sea.webp",
     "width": 3000,
     "height": 4000,
     "location": "Lagos, Portugal"
@@ -18,7 +18,7 @@ const galleryPhotos = [
   {
     "alt": "Sunlight breaking through clouds above the shore",
     "full": "/assets/photos/full/sunlit-shore.jpg",
-    "thumb": "/assets/photos/thumbs/sunlit-shore.jpg",
+    "thumb": "/assets/photos/thumbs/sunlit-shore.webp",
     "width": 3024,
     "height": 4032,
     "location": "Goa, India"
@@ -26,7 +26,7 @@ const galleryPhotos = [
   {
     "alt": "A peach evening sky over a beach",
     "full": "/assets/photos/full/evening-beach.jpg",
-    "thumb": "/assets/photos/thumbs/evening-beach.jpg",
+    "thumb": "/assets/photos/thumbs/evening-beach.webp",
     "width": 4032,
     "height": 3024,
     "location": "Mumbai, India"
@@ -34,7 +34,7 @@ const galleryPhotos = [
   {
     "alt": "Deep red evening clouds above the city skyline",
     "full": "/assets/photos/full/city-dusk.jpg",
-    "thumb": "/assets/photos/thumbs/city-dusk.jpg",
+    "thumb": "/assets/photos/thumbs/city-dusk.webp",
     "width": 1600,
     "height": 1066,
     "location": "Toronto, Canada"
@@ -42,7 +42,7 @@ const galleryPhotos = [
   {
     "alt": "Dark tree branches against the evening sky",
     "full": "/assets/photos/full/branches.jpg",
-    "thumb": "/assets/photos/thumbs/branches.jpg",
+    "thumb": "/assets/photos/thumbs/branches.webp",
     "width": 3024,
     "height": 4032,
     "location": "Chiang Mai, Thailand"

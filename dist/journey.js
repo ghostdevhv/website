@@ -17,13 +17,13 @@
  const stations=document.querySelector('#road-stations');
  const marks=['IIT KGP','Flipkart','Adobe','GitHub','Onehouse','→'];
  const brands=['college','flipkart','adobe','github','onehouse','now'];
- const assets={flipkart:'/assets/flipkart.png',adobe:'/assets/adobe.svg',github:'/assets/github.svg',onehouse:'/assets/onehouse.png',college:'/assets/kgp.png'};
+ const assets={flipkart:'/assets/flipkart.png',adobe:'/assets/adobe.svg',github:'/assets/github.svg',onehouse:'/assets/onehouse.png',college:'/assets/kgp-icon.webp'};
  const labels=['IIT Kharagpur','Flipkart','Adobe · intern + work','GitHub','Onehouse','Now'];
  const stationButtons=stops.map((stop,i)=>{
    const button=document.createElement('button');button.type='button';button.className='road-station';
    button.dataset.brand=brands[i];
    button.setAttribute('aria-label',`Visit ${stop.name}`);
-   const mark=document.createElement('span');mark.className='station-mark';if(assets[brands[i]]){const img=document.createElement('img');img.src=assets[brands[i]];img.alt=marks[i];img.addEventListener('error',()=>{mark.textContent=marks[i];},{once:true});mark.append(img);}else mark.innerHTML=rightArrow;
+   const mark=document.createElement('span');mark.className='station-mark';if(assets[brands[i]]){const img=document.createElement('img');img.src=assets[brands[i]];img.decoding='async';img.alt=marks[i];img.addEventListener('error',()=>{mark.textContent=marks[i];},{once:true});mark.append(img);}else mark.innerHTML=rightArrow;
    button.append(mark);button.addEventListener('click',()=>show(i));
    button.addEventListener('pointerenter',event=>{if(event.pointerType==='touch'||index>=0)return;clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>show(i,false),450);});
    button.addEventListener('pointerleave',()=>clearTimeout(hoverTimer));stations.append(button);return button;
@@ -76,7 +76,8 @@
   if(i===index)return;
   index=i;const stop=stops[i];
   const workLink=document.querySelector('.journey-work-link');
-  workLink.href='/work/#'+['college','flipkart','adobe','github','onehouse','now'][i];
+  workLink.hidden=i===0||i===5;
+  if(!workLink.hidden)workLink.href='/work/#'+['','flipkart','adobe','github','onehouse',''][i];
   workLink.firstChild.textContent=i===0?'Explore education ':i===5?'Explore current interests ':'Explore the work in detail ';
   panel.classList.remove('arrived');panel.hidden=true;hero.classList.add('journey-active');actor.setAttribute('aria-expanded','true');actor.setAttribute('aria-label',`Continue journey: ${stop.name}`);
   for(const [selector,key]of [['#stop-place','place'],['#stop-title','title'],['#stop-date','date'],['#stop-copy','copy'],['#stop-detail','detail']])document.querySelector(selector).textContent=stop[key];
