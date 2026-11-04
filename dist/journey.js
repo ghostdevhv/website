@@ -12,6 +12,7 @@
  const prev=document.querySelector('#journey-prev'),next=document.querySelector('#journey-next'),close=document.querySelector('#journey-close');
  let index=-1,progress=.95,walkFrame=0,walkVersion=0,hoverTimer;
  const leftArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5m6-6-6 6 6 6"/></svg>',rightArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>',resetArrow='<svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></svg>';
+ const upArrow=leftArrow.replace('M19 12H5m6-6-6 6 6 6','M12 19V5m-6 6 6-6 6 6'),downArrow=rightArrow.replace('M5 12h14m-6-6 6 6-6 6','M12 5v14m-6-6 6 6 6-6');
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const positions=[.91,.74,.57,.40,.23,.06];
  const stations=document.querySelector('#road-stations');
@@ -77,7 +78,7 @@
   index=i;const stop=stops[i];
   panel.classList.remove('arrived');panel.hidden=true;hero.classList.add('journey-active');actor.setAttribute('aria-expanded','true');actor.setAttribute('aria-label',`Continue journey: ${stop.name}`);
   for(const [selector,key]of [['#stop-place','place'],['#stop-title','title'],['#stop-date','date'],['#stop-copy','copy'],['#stop-detail','detail']])document.querySelector(selector).textContent=stop[key];
-  prev.disabled=false;prev.innerHTML=leftArrow;prev.setAttribute('aria-label',i===0?'Return to starting position':'Previous stop');next.innerHTML=i===stops.length-1?resetArrow:rightArrow;next.setAttribute('aria-label',i===stops.length-1?'Return to starting position':'Next stop');
+  prev.disabled=false;prev.innerHTML=upArrow;prev.setAttribute('aria-label',i===0?'Return to starting position':'Previous stop');next.innerHTML=i===stops.length-1?resetArrow:downArrow;next.setAttribute('aria-label',i===stops.length-1?'Return to starting position':'Next stop');
   stationButtons.forEach((b,n)=>{if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
   move(positions[i],()=>{
    panel.hidden=false;panel.scrollTop=0;anchorPanel();
@@ -96,9 +97,9 @@
   if(e.key==='Escape'&&index>=0){exit();return;}
   if(!['ArrowUp','ArrowDown'].includes(e.key)||e.repeat)return;
   actor.blur();e.preventDefault();
-  if(index<0){if(e.key==='ArrowUp')show(0,false);return;}
-  if(index===0&&e.key==='ArrowDown'){exit();return;}
-  show(Math.max(0,Math.min(stops.length-1,index+(e.key==='ArrowUp'?1:-1))),false);
+  if(index<0){if(e.key==='ArrowDown')show(0,false);return;}
+  if(index===0&&e.key==='ArrowUp'){exit();return;}
+  show(Math.max(0,Math.min(stops.length-1,index+(e.key==='ArrowDown'?1:-1))),false);
  });
  // One chapter per trackpad gesture. Small deltas accumulate; momentum cannot skip stops.
  let wheelTotal=0,lastWheel=0,gestureUsed=false,touchY=null;
@@ -114,7 +115,7 @@
    wheelTotal+=delta;
    if(Math.abs(wheelTotal)<24)return;
    gestureUsed=true;
-   const direction=wheelTotal<0?1:-1;
+   const direction=wheelTotal>0?1:-1;
    if(index<0){if(direction>0)show(0,false);return;}
    if(index===0&&direction<0){exit();return;}
    const target=Math.max(0,Math.min(stops.length-1,index+direction));
